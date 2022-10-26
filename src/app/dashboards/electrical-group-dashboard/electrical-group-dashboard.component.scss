@@ -1,0 +1,22 @@
+.align-verticle-middle{
+  margin-top: 5px;
+}
+
+.card-header-max-height {
+  max-height: 54px;
+}
+
+.headerContainer{
+  display: flex;
+}
+
+.buildingSelector{
+  flex-grow: 1;
+}
+
+.input-date{
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  display: flex;
+}

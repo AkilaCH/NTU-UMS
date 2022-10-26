@@ -1,0 +1,771 @@
+{
+    "chiller-efficiency": [
+        {
+            "plantName": "RTP",
+            "chillerPlantID": 1,
+            "chillers": [
+                {
+                    "groupId": 2,
+                    "equipmentId": 0,
+                    "equipmentDescription": "RTP_ALL_CHILLER_EFFICIENCY"
+                },
+                {
+                    "groupId": 3,
+                    "equipmentId": 99,
+                    "equipmentDescription": "RTP_CHILLER1_EFFICIENCY"
+                },
+                {
+                    "groupId": 4,
+                    "equipmentId": 100,
+                    "equipmentDescription": "RTP_CHILLER2_EFFICIENCY"
+                },
+                {
+                    "groupId": 5,
+                    "equipmentId": 101,
+                    "equipmentDescription": "RTP_CHILLER3_EFFICIENCY"
+                },
+                {
+                    "groupId": 6,
+                    "equipmentId": 102,
+                    "equipmentDescription": "RTP_CHILLER4_EFFICIENCY"
+                }
+            ]
+        },
+        {
+            "plantName": "NIC",
+            "chillerPlantID": 2,
+            "chillers": [
+                {
+                    "groupId": 7,
+                    "equipmentId": 0,
+                    "equipmentDescription": "NIC_ALL_CHILLER_EFFICIENCY"
+                },
+                {
+                    "groupId": 8,
+                    "equipmentId": 125,
+                    "equipmentDescription": "NIC_CHILLER1_EFFICIENCY"
+                },
+                {
+                    "groupId": 9,
+                    "equipmentId": 126,
+                    "equipmentDescription": "NIC_CHILLER2_EFFICIENCY"
+                }
+            ]
+        },
+        {
+            "plantName": "EMB",
+            "chillerPlantID": 3,
+            "chillers": [
+                {
+                    "groupId": 10,
+                    "equipmentId": 0,
+                    "equipmentDescription": "EMB_ALL_CHILLER_EFFICIENCY"
+                },
+                {
+                    "groupId": 11,
+                    "equipmentId": 141,
+                    "equipmentDescription": "EMB_CHILLER1_EFFICIENCY"
+                },
+                {
+                    "groupId": 12,
+                    "equipmentId": 142,
+                    "equipmentDescription": "EMB_CHILLER2_EFFICIENCY"
+                },
+                {
+                    "groupId": 13,
+                    "equipmentId": 143,
+                    "equipmentDescription": "EMB_CHILLER3_EFFICIENCY"
+                }
+            ]
+        },
+        {
+            "plantName": "HIVE",
+            "chillerPlantID": 4,
+            "chillers": [
+                {
+                    "groupId": 14,
+                    "equipmentId": 31,
+                    "equipmentDescription": "HIVE_ALL_CHILLER_EFFICIENCY"
+                },
+                {
+                    "groupId": 14,
+                    "equipmentId": 31,
+                    "equipmentDescription": "CH-1"
+                }
+            ]
+        },
+        {
+            "plantName": "SADM",
+            "chillerPlantID": 5,
+            "chillers": [
+                {
+                    "groupId": 15,
+                    "equipmentId": 0,
+                    "equipmentDescription": "SADM_ALL_CHILLER_EFFICIENCY"
+                },
+                {
+                    "groupId": 16,
+                    "equipmentId": 176,
+                    "equipmentDescription": "SADM_CHILLER1_EFFICIENCY"
+                },
+                {
+                    "groupId": 17,
+                    "equipmentId": 177,
+                    "equipmentDescription": "SADM_CHILLER2_EFFICIENCY"
+                },
+                {
+                    "groupId": 18,
+                    "equipmentId": 178,
+                    "equipmentDescription": "SADM_CHILLER3_EFFICIENCY"
+                }
+            ]
+        },
+        {
+            "plantName": "SPORT-HUB",
+            "chillerPlantID": 6,
+            "chillers": [
+                {
+                    "groupId": 19,
+                    "equipmentId": 0,
+                    "equipmentDescription": "SPORT HUB_ALL_CHILLER_EFFICIENCY"
+                },
+                {
+                    "groupId": 20,
+                    "equipmentId": 194,
+                    "equipmentDescription": "SPORT HUB_CHILLER1_EFFICIENCY"
+                },
+                {
+                    "groupId": 21,
+                    "equipmentId": 195,
+                    "equipmentDescription": "SPORT HUB_CHILLER2_EFFICIENCY"
+                }
+            ]
+        },
+        {
+            "plantName": "N3.1",
+            "chillerPlantID": 7,
+            "chillers": [
+                {
+                    "groupId": 22,
+                    "equipmentId": 0,
+                    "equipmentDescription": "N3.1_ALL_CHILLER_EFFICIENCY"
+                },
+                {
+                    "groupId": 23,
+                    "equipmentId": 209,
+                    "equipmentDescription": "N3.1_CHILLER1_EFFICIENCY"
+                },
+                {
+                    "groupId": 24,
+                    "equipmentId": 210,
+                    "equipmentDescription": "N3.1_CHILLER2_EFFICIENCY"
+                },
+                {
+                    "groupId": 25,
+                    "equipmentId": 211,
+                    "equipmentDescription": "N3.1_CHILLER3_EFFICIENCY"
+                },
+                {
+                    "groupId": 26,
+                    "equipmentId": 212,
+                    "equipmentDescription": "N3.1_CHILLER4_EFFICIENCY"
+                }
+            ]
+        },
+        {
+            "plantName": "SBS",
+            "chillerPlantID": 8,
+            "chillers": [
+                {
+                    "groupId": 27,
+                    "equipmentId": 0,
+                    "equipmentDescription": "SBS_ALL_CHILLER_EFFICIENCY"
+                },
+                {
+                    "groupId": 28,
+                    "equipmentId": 231,
+                    "equipmentDescription": "SBS_CHILLER1_EFFICIENCY"
+                },
+                {
+                    "groupId": 29,
+                    "equipmentId": 232,
+                    "equipmentDescription": "SBS_CHILLER2_EFFICIENCY"
+                },
+                {
+                    "groupId": 30,
+                    "equipmentId": 233,
+                    "equipmentDescription": "SBS_CHILLER3_EFFICIENCY"
+                },
+                {
+                    "groupId": 31,
+                    "equipmentId": 234,
+                    "equipmentDescription": "SBS_CHILLER4_EFFICIENCY"
+                }
+            ]
+        },
+        {
+            "plantName": "North Spine",
+            "chillerPlantID": 9,
+            "chillers": [
+                {
+                    "groupId": 32,
+                    "equipmentId": 0,
+                    "equipmentDescription": "NS MAIN_ALL_CHILLER_EFFICIENCY"
+                },
+                {
+                    "groupId": 33,
+                    "equipmentId": 256,
+                    "equipmentDescription": "NS MAIN_CHILLER1_EFFICIENCY"
+                },
+                {
+                    "groupId": 34,
+                    "equipmentId": 257,
+                    "equipmentDescription": "NS MAIN_CHILLER2_EFFICIENCY"
+                },
+                {
+                    "groupId": 35,
+                    "equipmentId": 258,
+                    "equipmentDescription": "NS MAIN_CHILLER3_EFFICIENCY"
+                },
+                {
+                    "groupId": 36,
+                    "equipmentId": 259,
+                    "equipmentDescription": "NS MAIN_CHILLER4_EFFICIENCY"
+                },
+                {
+                    "groupId": 37,
+                    "equipmentId": 260,
+                    "equipmentDescription": "NS MAIN_CHILLER5_EFFICIENCY"
+                },
+                {
+                    "groupId": 38,
+                    "equipmentId": 261,
+                    "equipmentDescription": "NS MAIN_CHILLER6_EFFICIENCY"
+                }
+            ]
+        },
+        {
+            "plantName": "South Spine",
+            "chillerPlantID": 10,
+            "chillers": [
+                {
+                    "groupId": 39,
+                    "equipmentId": 0,
+                    "equipmentDescription": "SS MAIN_ALL_CHILLER_EFFICIENCY"
+                },
+                {
+                    "groupId": 40,
+                    "equipmentId": 292,
+                    "equipmentDescription": "SS MAIN_CHILLER1_EFFICIENCY"
+                },
+                {
+                    "groupId": 41,
+                    "equipmentId": 293,
+                    "equipmentDescription": "SS MAIN_CHILLER2_EFFICIENCY"
+                },
+                {
+                    "groupId": 42,
+                    "equipmentId": 294,
+                    "equipmentDescription": "SS MAIN_CHILLER3_EFFICIENCY"
+                },
+                {
+                    "groupId": 43,
+                    "equipmentId": 295,
+                    "equipmentDescription": "SS MAIN_CHILLER4_EFFICIENCY"
+                },
+                {
+                    "groupId": 44,
+                    "equipmentId": 296,
+                    "equipmentDescription": "SS MAIN_CHILLER5_EFFICIENCY"
+                },
+                {
+                    "groupId": 45,
+                    "equipmentId": 297,
+                    "equipmentDescription": "SS MAIN_CHILLER6_EFFICIENCY"
+                }
+            ]
+        },
+        {
+            "plantName": "NEC",
+            "chillerPlantID": 11,
+            "chillers": [
+                {
+                    "groupId": 46,
+                    "equipmentId": 0,
+                    "equipmentDescription": "NS MAIN_ALL_CHILLER_EFFICIENCY"
+                },
+                {
+                    "groupId": 47,
+                    "equipmentId": 319,
+                    "equipmentDescription": "NS MAIN_CHILLER1_EFFICIENCY"
+                },
+                {
+                    "groupId": 48,
+                    "equipmentId": 320,
+                    "equipmentDescription": "NS MAIN_CHILLER2_EFFICIENCY"
+                },
+                {
+                    "groupId": 49,
+                    "equipmentId": 321,
+                    "equipmentDescription": "NS MAIN_CHILLER3_EFFICIENCY"
+                }
+            ]
+        },
+        {
+            "plantName": "ABN",
+            "chillerPlantID": 12,
+            "chillers": [
+                {
+                    "groupId": 50,
+                    "equipmentId": 0,
+                    "equipmentDescription": "ABN_ALL_CHILLER_EFFICIENCY"
+                },
+                {
+                    "groupId": 51,
+                    "equipmentId": 337,
+                    "equipmentDescription": "ABN_CHILLER1_EFFICIENCY"
+                },
+                {
+                    "groupId": 52,
+                    "equipmentId": 338,
+                    "equipmentDescription": "ABN_CHILLER2_EFFICIENCY"
+                },
+                {
+                    "groupId": 53,
+                    "equipmentId": 339,
+                    "equipmentDescription": "ABN_CHILLER3_EFFICIENCY"
+                },
+                {
+                    "groupId": 54,
+                    "equipmentId": 340,
+                    "equipmentDescription": "ABN_CHILLER4_EFFICIENCY"
+                },
+                {
+                    "groupId": 55,
+                    "equipmentId": 341,
+                    "equipmentDescription": "ABN_CHILLER5_EFFICIENCY"
+                }
+            ]
+        }
+    ],
+    "condenser-performance": [
+        {
+            "plantName": "RTP",
+            "chillerPlantID": 1,
+            "headers": [
+                  {
+                    "groupId": 56,
+                    "equipmentId": 660,
+                    "equipmentDescription": "RTP_HEADER1"
+                  },
+                  {
+                    "groupId": 57,
+                    "equipmentId": 661,
+                    "equipmentDescription": "RTP_HEADER2"
+                  },
+                  {
+                    "groupId": 58,
+                    "equipmentId": 662,
+                    "equipmentDescription": "RTP_HEADER3"
+                  },
+                  {
+                    "groupId": 59,
+                    "equipmentId": 663,
+                    "equipmentDescription": "RTP_HEADER4"
+                  }
+            ]
+        },
+        {
+            "plantName": "NIC",
+            "chillerPlantID": 2,
+            "headers": [
+                  {
+                    "groupId": 60,
+                    "equipmentId": 664,
+                    "equipmentDescription": "NIC_HEADER1"
+                  },
+                  {
+                    "groupId": 60,
+                    "equipmentId": 132,
+                    "equipmentDescription": "NIC_HEADER2"
+                  }
+            ]
+        },
+        {
+            "plantName": "EMB",
+            "chillerPlantID": 3,
+            "headers": [
+                  {
+                    "groupId": 61,
+                    "equipmentId": 665,
+                    "equipmentDescription": "EMB_HEADER1"
+                  },
+                  {
+                    "groupId": 61,
+                    "equipmentId": 148,
+                    "equipmentDescription": "EMB_HEADER2"
+                  },
+                  {
+                    "groupId": 61,
+                    "equipmentId": 149,
+                    "equipmentDescription": "EMB_HEADER3"
+                  }
+            ]
+        },
+        {
+            "plantName": "HIVE",
+            "chillerPlantID": 4,
+            "headers": [
+                  {
+                    "groupId": 62,
+                    "equipmentId": 666,
+                    "equipmentDescription": "HIVE_HEADER1"
+                  },
+                  {
+                    "groupId": 62,
+                    "equipmentId": 166,
+                    "equipmentDescription": "HIVE_HEADER2"
+                  }
+            ]
+        },
+        {
+            "plantName": "SADM",
+            "chillerPlantID": 5,
+            "headers": [
+                  {
+                    "groupId": 63,
+                    "equipmentId": 667,
+                    "equipmentDescription": "SADM_HEADER1"
+                  },
+                  {
+                    "groupId": 63,
+                    "equipmentId": 184,
+                    "equipmentDescription": "SADM_HEADER2"
+                  },
+                  {
+                    "groupId": 63,
+                    "equipmentId": 184,
+                    "equipmentDescription": "SADM_HEADER3"
+                  }
+            ]
+        },
+        {
+            "plantName": "SPORT-HUB",
+            "chillerPlantID": 6,
+            "headers": [
+                  {
+                    "groupId": 64,
+                    "equipmentId": 668,
+                    "equipmentDescription": "SPORT HUB_HEADER1"
+                  },
+                  {
+                    "groupId": 64,
+                    "equipmentId": 200,
+                    "equipmentDescription": "SPORT HUB_HEADER2"
+                  }
+            ]
+        },
+        {
+            "plantName": "N3.1",
+            "chillerPlantID": 7,
+            "headers": [
+                  {
+                    "groupId": 65,
+                    "equipmentId": 669,
+                    "equipmentDescription": "N3.1_HEADER1"
+                  },
+                  {
+                    "groupId": 65,
+                    "equipmentId": 218,
+                    "equipmentDescription": "N3.1_HEADER2"
+                  },
+                  {
+                    "groupId": 65,
+                    "equipmentId": 219,
+                    "equipmentDescription": "N3.1_HEADER3"
+                  },
+                  {
+                    "groupId": 65,
+                    "equipmentId": 220,
+                    "equipmentDescription": "N3.1_HEADER4"
+                  }
+            ]
+        },
+        {
+            "plantName": "SBS",
+            "chillerPlantID": 8,
+            "headers": [
+                  {
+                    "groupId": 66,
+                    "equipmentId": 670,
+                    "equipmentDescription": "SBS_HEADER1"
+                  },
+                  {
+                    "groupId": 66,
+                    "equipmentId": 240,
+                    "equipmentDescription": "SBS_HEADER2"
+                  },
+                  {
+                    "groupId": 66,
+                    "equipmentId": 241,
+                    "equipmentDescription": "SBS_HEADER3"
+                  },
+                  {
+                    "groupId": 66,
+                    "equipmentId": 242,
+                    "equipmentDescription": "SBS_HEADER4"
+                  }
+            ]
+        },
+        {
+            "plantName": "North Spine",
+            "chillerPlantID": 9,
+            "headers": [
+                {
+                    "groupId": 67,
+                    "equipmentId": 671,
+                    "equipmentDescription": "NS MAIN_CHILLER1"
+                },
+                {
+                    "groupId": 68,
+                    "equipmentId": 672,
+                    "equipmentDescription": "NS MAIN_CHILLER2"
+                },
+                {
+                    "groupId": 68,
+                    "equipmentId": 270,
+                    "equipmentDescription": "NS MAIN_CHILLER3"
+                },
+                {
+                    "groupId": 68,
+                    "equipmentId": 271,
+                    "equipmentDescription": "NS MAIN_CHILLER4"
+                },
+                {
+                    "groupId": 68,
+                    "equipmentId": 272,
+                    "equipmentDescription": "NS MAIN_CHILLER5"
+                },
+                {
+                    "groupId": 68,
+                    "equipmentId": 273,
+                    "equipmentDescription": "NS MAIN_CHILLER6"
+                }
+            ]
+        },
+        {
+            "plantName": "South Spine",
+            "chillerPlantID": 10,
+            "headers": [
+                  {
+                    "groupId": 69,
+                    "equipmentId": 673,
+                    "equipmentDescription": "SS MAIN_HEADER1"
+                  },
+                  {
+                    "groupId": 69,
+                    "equipmentId": 305,
+                    "equipmentDescription": "SS MAIN_HEADER2"
+                  },
+                  {
+                    "groupId": 69,
+                    "equipmentId": 306,
+                    "equipmentDescription": "SS MAIN_HEADER3"
+                  },
+                  {
+                    "groupId": 69,
+                    "equipmentId": 307,
+                    "equipmentDescription": "SS MAIN_HEADER4"
+                  },
+                  {
+                    "groupId": 69,
+                    "equipmentId": 308,
+                    "equipmentDescription": "SS MAIN_HEADER5"
+                  },
+                  {
+                    "groupId": 69,
+                    "equipmentId": 309,
+                    "equipmentDescription": "SS MAIN_HEADER6"
+                  }
+            ]
+        },
+        {
+            "plantName": "NEC",
+            "chillerPlantID": 11,
+            "headers": [
+                  {
+                    "groupId": 70,
+                    "equipmentId": 674,
+                    "equipmentDescription": "NEC_HEADER1"
+                  },
+                  {
+                    "groupId": 70,
+                    "equipmentId": 326,
+                    "equipmentDescription": "NEC_HEADER2"
+                  },
+                  {
+                    "groupId": 70,
+                    "equipmentId": 327,
+                    "equipmentDescription": "NEC_HEADER3"
+                  }
+            ]
+        },
+        {
+            "plantName": "ABN",
+            "chillerPlantID": 12,
+            "headers": [
+                  {
+                    "groupId": 71,
+                    "equipmentId": 675,
+                    "equipmentDescription": "ABN_HEADER1"
+                  },
+                  {
+                    "groupId": 71,
+                    "equipmentId": 348,
+                    "equipmentDescription": "ABN_HEADER2"
+                  },
+                  {
+                    "groupId": 71,
+                    "equipmentId": 349,
+                    "equipmentDescription": "ABN_HEADER3"
+                  },
+                  {
+                    "groupId": 71,
+                    "equipmentId": 350,
+                    "equipmentDescription": "ABN_HEADER4"
+                  },
+                  {
+                    "groupId": 71,
+                    "equipmentId": 351,
+                    "equipmentDescription": "ABN_HEADER5"
+                  }
+            ]
+        }
+    ],
+    "carbon-footprint": [
+        {
+            "plantName": "RTP",
+            "chillerPlantID": 1,
+            "groupId": 72
+            
+        },
+        {
+            "plantName": "NIC",
+            "chillerPlantID": 2,
+            "groupId": 73
+        },
+        {
+            "plantName": "EMB",
+            "chillerPlantID": 3,
+            "groupId": 74
+        },
+        {
+            "plantName": "HIVE",
+            "chillerPlantID": 4,
+            "groupId": 75
+        },
+        {
+            "plantName": "SADM",
+            "chillerPlantID": 5,
+            "groupId": 76
+        },
+        {
+            "plantName": "SPORT-HUB",
+            "chillerPlantID": 6,
+            "groupId": 77
+        },
+        {
+            "plantName": "N3.1",
+            "chillerPlantID": 7,
+            "groupId": 78
+        },
+        {
+            "plantName": "SBS",
+            "chillerPlantID": 8,
+            "groupId": 79
+        },
+        {
+            "plantName": "North Spine",
+            "chillerPlantID": 9,
+            "groupId": 80
+        },
+        {
+            "plantName": "South Spine",
+            "chillerPlantID": 10,
+            "groupId": 81
+        },
+        {
+            "plantName": "NEC",
+            "chillerPlantID": 11,
+            "groupId": 82
+        },
+        {
+            "plantName": "ABN",
+            "chillerPlantID": 12,
+            "groupId": 83
+        }
+    ],
+    "heat-balance": [
+        {
+            "plantName": "RTP",
+            "chillerPlantID": 1,
+            "groupId": 84
+            
+        },
+        {
+            "plantName": "NIC",
+            "chillerPlantID": 2,
+            "groupId": 85
+        },
+        {
+            "plantName": "EMB",
+            "chillerPlantID": 3,
+            "groupId": 86
+        },
+        {
+            "plantName": "HIVE",
+            "chillerPlantID": 4,
+            "groupId": 87
+        },
+        {
+            "plantName": "SADM",
+            "chillerPlantID": 5,
+            "groupId": 88
+        },
+        {
+            "plantName": "SPORT-HUB",
+            "chillerPlantID": 6,
+            "groupId": 89
+        },
+        {
+            "plantName": "N3.1",
+            "chillerPlantID": 7,
+            "groupId": 90
+        },
+        {
+            "plantName": "SBS",
+            "chillerPlantID": 8,
+            "groupId": 91
+        },
+        {
+            "plantName": "North Spine",
+            "chillerPlantID": 9,
+            "groupId": 92
+        },
+        {
+            "plantName": "South Spine",
+            "chillerPlantID": 10,
+            "groupId": 93
+        },
+        {
+            "plantName": "NEC",
+            "chillerPlantID": 11,
+            "groupId": 94
+        },
+        {
+            "plantName": "ABN",
+            "chillerPlantID": 12,
+            "groupId": 95
+        }
+    ]
+}

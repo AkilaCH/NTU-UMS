@@ -1,0 +1,176 @@
+<div class="card main-card-height">
+  <div class="card-body overflow-auto col-lg-12">
+ <div class="row">
+    <div class="col-md col-lg col-xl pl-1 pr-1 mt-2 ">
+      <fieldset>
+        <legend>Filtration</legend>
+        <div class="row">
+          <div class="form-group">
+            <label for="reportType">Report Type</label><br>
+            <input class="form-check-input d-inline-block ml-0" type="radio" name="reportType" (change)='setReportType(0)' id="reportType" value="daily" 
+            [checked]="reportType == 0 ? true : false">
+            <label class="form-check-label d-inline-block ml-4" for="reportType">
+              Daily
+            </label>
+            <input class="form-check-input d-inline-block ml-5" type="radio" name="reportType" (change)='setReportType(1)' id="reportType" value="monthly" 
+            [checked]="reportType == 1 ? true : false">
+            <label class="form-check-label d-inline-block" for="reportType" style="margin-left: 72px;">
+              Monthly
+            </label>
+          </div>
+        </div>
+        <div class="row" *ngIf="reportType == 0 || reportType == 1">
+          <div class="form-group col-md-3 pl-0" *ngIf="reportType == 0">
+            <label>Month</label>
+            <select class="form-control">
+              <option>January</option>
+              <option>February</option>
+              <option>March</option>
+              <option>April</option>
+              <option>May</option>
+              <option>June</option>
+              <option selected>July</option>
+              <option>August</option>
+              <option>September</option>
+              <option>October</option>
+              <option>November</option>
+              <option>December</option>
+            </select>
+          </div>
+          <div class="form-group col-md-3 pl-0">
+            <label>Year</label>
+            <select class="form-control">
+              <option>2016</option>
+              <option>2017</option>
+              <option>2018</option>
+              <option>2019</option>
+              <option>2020</option>
+              <option selected>2021</option>
+              <option>2022</option>
+              <option>2023</option>
+              <option>2024</option>
+              <option>2025</option>
+              <option>2026</option>
+              <option>2027</option>
+              <option>2028</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 pl-0">
+            <div class="form-group">
+              <label for="reportType">Service Type</label><br>
+              <input class="form-check-input d-inline-block ml-0" type="radio" name="serviceType" (change)='setServiceType(0)' value="electrical" 
+              [checked]="reportType == 0 ? true : false">
+              <label class="form-check-label d-inline-block ml-4" for="reportType">
+                Electrical
+              </label>
+              <input class="form-check-input d-inline-block ml-5" type="radio" name="serviceType" (change)='setServiceType(1)' value="water" 
+              [checked]="reportType == 1 ? true : false">
+              <label class="form-check-label d-inline-block" for="reportType" style="margin-left: 72px;">
+                Water
+              </label>
+            </div>
+          </div>
+          <div class="col-md-3 pl-0">
+            <div class="form-group">
+              <label for="reportType">Building</label><br>
+              <select class="form-control">
+                <option>N2.1</option>
+                <option>N3</option>
+                <option>N3.1</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3 pl-0">
+            <div class="form-group">
+              <label for="reportType">Floor</label><br>
+              <select class="form-control">
+                <option>All</option>
+                <option>Level 1</option>
+                <option>Level 2</option>
+                <option>Level 3</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3 pl-0">
+            <div class="form-group">
+              <label for="reportType">Equipment Type</label><br>
+              <select class="form-control">
+                <option>All</option>
+                <option>ACMV</option>
+                <option>Ligthing</option>
+                <option>Receptacle</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-primary float-right">Show Equipment</button>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 pl-0 pr-0">
+      <fieldset>
+        <legend>Equipment</legend>
+        <div class="row">
+          <div *ngFor="let meter of meters; let i = index;" class="col-md-2">
+            <input type="checkbox" [checked]='isChecked(i)'>
+            <label class="meter-check">{{ meter }}</label><br>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-primary float-right">View Summary</button>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 pl-0 pr-0">
+      <fieldset>
+        <legend>Consumption Summary</legend>
+        <div class="row" *ngIf="reportType == 0 ? true : false">
+          <div class="col-md-12">
+          <fusioncharts
+            width="100%"
+            type="mscolumn2d"
+            dataFormat="JSON"
+            [dataSource]="meterDailySource">
+        </fusioncharts>
+        </div>
+      </div>
+      <div class="row" *ngIf="reportType == 1 ? true : false">
+        <div class="col-md-12">
+        <fusioncharts
+          width="100%"
+          type="mscolumn2d"
+          dataFormat="JSON"
+          [dataSource]="meterMonthlySource">
+      </fusioncharts> 
+      </div>
+    </div>
+        <div class="row mt-10" *ngIf="reportType == 0 ? true : false">
+          <div class="col-md-12">
+            <a type="button" class="btn btn-primary float-right text-colour-white" href="../../../assets/data/demo/Daily.xlsx" download="Daily.xlsx">Export Report</a>
+          </div>
+        </div>
+        <div class="row mt-10" *ngIf="reportType == 1 ? true : false">
+          <div class="col-md-12">
+            <a type="button" class="btn btn-primary float-right text-colour-white" href="../../../assets/data/demo/Monthly.xlsx" download="Monthly.xlsx">Export Report</a>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>
+</div>
+
+

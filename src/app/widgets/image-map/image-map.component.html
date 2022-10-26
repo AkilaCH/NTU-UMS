@@ -1,0 +1,69 @@
+<div class="row h-100">
+  <div class="col-md-12 col-lg-12-col-xl-12 pl-0 pr-0">
+    <div class="card h-100" *ngIf="datasourse">
+      <div>
+        <div class="card-header">{{ title }}</div>
+      </div>
+
+      <div class="card-header-body card-scroll" (scroll) = "cardHide()">
+        <div class="breadcrumb-date-picker">
+          <app-breadcrumb [dataSource]="breadcrumbData"></app-breadcrumb>
+          <date-range-picker
+            *ngIf="building != 'main-map'"
+            [maxDate]="today"
+            [minDate]="minDate"
+            position="bottom-left"
+            [(dateRange)]="dateRange"
+            (dateRangeChange)="dateRangedChanged()">
+          </date-range-picker>
+        </div>
+        <button *ngIf="mapPicker" (click)="getData()">GENERATE, MAP ZONE</button>
+        <button *ngIf="mapPicker && !_tempMapCoordinate" (click)="higlightMap()">MARKING</button>
+        
+        <div [@simpleFadeAnimation]="'in'" class="p-4 d-flex align-items-center justify-content-center" (ontouchmove)="onPnaImage($event)">
+          <img [alt]="datasourse.imageAlt" (load)="imageDimension($event)"  [src]="datasourse.imageUrl" id="mapImage" usemap="#image_map">
+          <svg [attr.height]="imageHeight" style="position:absolute;" [attr.width]="imageWidth" id="xxx">
+            <svg:text *ngFor="let dataZone of datasourse.zoneMap" font-size="22px" [attr.class]="dataZone.hide ? 'color_text_hide': 'color_text draggable'" [attr.fill] = "dataZone.hide" [attr.x]="dataZone.x" [attr.y]="dataZone.y" [attr.label]="dataZone.label"  >{{dataZone.label}}</text>
+            <polygon (click)="onClicked($event)" (mouseout)="mouseOut($event)" (mouseover)="mouseEnter($event)"
+                     *ngFor="let coordinate of datasourse.map" [attr.alt]="coordinate.title"
+                     [attr.href]="coordinate.link" [attr.points]="coordinate.coords" data-id="{{ coordinate.building }}"
+                     style="fill:transparent;stroke:transparent;stroke-width:2;cursor: pointer" />
+            <polyline *ngIf="mapPicker" id="polyline" style="fill:white;stroke:red;stroke-width:3"/>
+            
+          </svg>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div #myDetailDiv class="triangle-pointer" >
+  <div class="image">
+    <img height="50px" [src]="iconURL" alt="icon">
+  </div>
+  <div class="tooltip-details">
+    <div class="building-name">
+      <span class="building-name">{{ buildingName }}</span>
+    </div>
+    <div class="consumption">
+      <span *ngIf="cardDetails">{{ cardDetails }}{{suffix}} {{ unit }}</span>
+      <span *ngIf="!cardDetails">N/A</span>
+    </div>
+  </div>
+</div>
+
+<!-- TODO: Old tooltip design -->
+<!-- <div #myDetailDiv class="triangle-pointer" >
+  <p class="card-text-position">{{ buildingName }}</p>
+  <div style="display: flex; margin-top: 5px;">
+    <img height="40px" [src]="iconURL" alt="icon">
+    <span *ngIf="cardDetails" class="card-text-position">{{ cardDetails }} {{ unit }}</span>
+    <span *ngIf="!cardDetails" class="card-text-position">N/A</span>
+    <span *ngIf="!cardDetails && !disableLoading" class="card-text-position">Loading...</span>
+  </div>
+</div> -->
+
+
+<div #myZoneDev class="triangle-pointer" >
+  <h4 class="zone">{{ buildingName }}</h4>
+</div>

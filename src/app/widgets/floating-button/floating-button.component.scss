@@ -1,0 +1,39 @@
+.floating-button {
+  position:fixed;
+  right: 50px;
+  bottom: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background-color: #007BFF;
+  box-shadow: 2px 2px 8px #1b2126;
+  display: flex;
+  justify-content: space-around;
+}
+
+.floating-button:hover {
+  box-shadow: 2px 2px 4px #1b2126;
+  background-color: rgb(0, 115, 238);
+  cursor: pointer;
+}
+
+.floating-button:active {
+  box-shadow: 2px 2px 4px #1b2126;
+  background-color: rgb(0, 54, 112);
+  cursor: pointer;
+}
+
+.icon-center {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.disabled {
+  background-color: rgb(114, 114, 114);
+  cursor: none;
+}
+
+.disabled:hover {
+  background-color: rgb(114, 114, 114);
+  cursor: none;
+}

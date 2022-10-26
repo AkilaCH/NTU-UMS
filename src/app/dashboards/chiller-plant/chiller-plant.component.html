@@ -1,0 +1,108 @@
+<div class="card h-100">
+  <div class="card-header pl-3 pt-3 pb-3">
+    <span class="font-secondary">
+      Chiller Plant &nbsp;
+      <app-combo-box class="select-box-dark" [dataSource]="plantList" [selected]="chillerId" [fullWidth]="false" [enableAll]="false"
+          (selectedChange)="chillerChanged($event)"></app-combo-box>
+    </span>
+  </div>
+  <div class="card-body h-100 card-scroll">
+    <div class="row row-eq-height">
+      <div class="col-md-7 col-lg-7 col-xl-7 pr-2 pl-0">
+        <div class="row pl-0">
+          <div class="col-md-12 col-lg-12 col-xl-12 pr-0 pl-0">
+            <div class="chart-card h-100" id="plantEficiency">
+              <div class="chart-card-header pl-2 pr-2">
+                <span class="header-title">Plant Efficiency - Real Time</span>
+                <app-print-preview [className]="'position-gorelative'" [targetHtml] = "'plantEficiency'" [title]="'Plant Efficiency - Real Time'"></app-print-preview>
+
+              </div>
+              <div class="chart-card-body position-relative">
+                <div class="row h-100">
+                  <div class="col-md-12 col-lg-12 col-xl-12 p-2">
+                    <app-chart-loader [isDone] = "isDone.plantEffieciencyDataSource">
+                      <app-linear-scale *ngIf="plantEffieciencyDataSource" [dataSource]="plantEffieciencyDataSource"
+                        height="130"></app-linear-scale>
+                    </app-chart-loader>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2 pl-0">
+          <div class="col-md-12 col-lg-12 col-xl-12 pr-0 pl-0">
+            <div class="chart-card h-100" id="heatbalance">
+              <div class="chart-card-header pl-2 pr-2">
+                <span class="header-title">Today's Heat Balance - {{ today | date: 'dd/MM/yyyy' }}</span>
+                <div class="d-flex align-items-center">
+                  <span class="font-secondary">
+                    yScale &nbsp;
+                    <app-combo-box [disabled] = "!isDone.heatBalanceDataSource" dark="false" class="select-box-light" [dataSource]="scaleListHeatBalance" [selected]="scaleListHeatBalanceSelected" [fullWidth]="false" [enableAll]="false"
+                        (selectedChange)="scaleHeatBalanceChanged($event)"></app-combo-box>
+                  </span>
+                  <app-print-preview [className]="'position-gorelative'" [targetHtml] = "'heatbalance'" [title]="'Todays Heat Balance'"></app-print-preview>
+                </div>
+              </div>
+              <div class="chart-card-body h-100 p-2 position-relative">
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-xl-12 pb-3">
+                    <app-chart-loader [isDone] = "isDone.heatBalanceDataSource">
+                      <app-multi-series *ngIf="heatBalanceDataSource" [dataSource]="heatBalanceDataSource" [height]="220"></app-multi-series>
+                    </app-chart-loader>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2 pl-0">
+          <div class="col-md-12 col-lg-12 col-xl-12 pr-0 pl-0">
+            <div class="chart-card h-100 mb-3" id="todayEficiency">
+              <div class="chart-card-header pl-2 pr-2">
+                <span class="header-title">Today's Efficiency Trend - {{ today | date: 'dd/MM/yyyy' }}</span>
+                
+                <div class="d-flex align-items-center">
+                  <span class="font-secondary">
+                    yScale &nbsp;
+                    <app-combo-box [disabled] = "!isDone.effieciencyTrendDataSource" dark="false" class="select-box-light" [dataSource]="scaleListHeatBalance" [selected]="scaleListEficiencySelected" [fullWidth]="false" [enableAll]="false"
+                        (selectedChange)="scaleEficiencyChanged($event)"></app-combo-box>
+                  </span>
+                  <app-print-preview [className]="'position-gorelative'" [targetHtml] = "'todayEficiency'" [title]="'Todays Efficiency Trend'"></app-print-preview>
+                </div>
+
+              </div>
+              <div class="chart-card-body position-relative">
+                <div class="row p-2">
+                  <div class="col-md-12 col-lg-12 col-xl-12">
+                    <app-chart-loader [isDone] = "isDone.effieciencyTrendDataSource">
+                      <app-multi-series *ngIf="effieciencyTrendDataSource" [dataSource]="effieciencyTrendDataSource" [height]="220"></app-multi-series>
+                    </app-chart-loader>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 col-lg-5 col-xl-5 pl-0 pr-0">
+        <div class="chart-card h-100" id="energyDistribution">
+          <div class="chart-card-header pl-2 pr-2">
+            <span class="header-title">Energy Distribution - {{ monthlyChange ? "Yearly" : "Monthly" }}</span>
+            <div class="d-flex align-items-center">
+              <div class="float-right toggle-middle-head">
+                <app-toggle-switch [disabled] = "!isDone.enegeryConsumptionDataSource" aria-disabled="true" size="small" class="float-left" (onChange)="monthlyToggle($event)">{{ monthlyChange ? "Yearly" : "Monthly" }}</app-toggle-switch>
+              </div>
+              <app-print-preview [className]="'position-gorelative'" [targetHtml] = "'energyDistribution'" [title]="'Energy Distribution'"></app-print-preview>
+            </div>
+          </div>
+          <div class="chart-card-body pie-chart-min-height position-relative">
+            <app-chart-loader [isDone] = "isDone.enegeryConsumptionDataSource">
+              <app-doughnut2d *ngIf="enegeryConsumptionDataSource" [dataSource]="enegeryConsumptionDataSource"></app-doughnut2d>
+            </app-chart-loader>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

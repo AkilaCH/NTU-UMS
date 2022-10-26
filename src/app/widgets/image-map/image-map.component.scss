@@ -1,0 +1,105 @@
+.breadcrumb-date-picker {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+// TODO: replace old tooltip
+// .triangle-pointer {
+//   background-color: rgba(0, 0, 0, 0.85);
+//   min-height: 50px !important;
+//   min-width: 200px !important;
+//   padding: 10px;
+//   color: #e2e2e2;
+//   position: fixed;
+//   border-radius: 5px;
+//   box-shadow: 2px 2px 8px 2px #101010;
+// }
+
+// .card-text-position {
+//   text-align: center;
+//   width: 100%;
+//   margin: auto;
+// }
+
+// .triangle-pointer:after {
+//   content:'';
+//   position: absolute;
+//   top: 100%;
+//   left: 0;
+//   right: 0;
+//   margin: 0 auto;
+//   width: 0;
+//   height: 0;
+//   border-top: solid 20px rgba(0, 0, 0, 0.8);
+//   border-left: solid 20px transparent;
+//   border-right: solid 20px transparent;
+//   box-shadow: 1px 1px 4px #000;
+// }
+
+.back-btn{
+  margin: 20px 20px 20px  20px;
+}
+
+.triangle-pointer {
+  position: fixed;
+  min-width: 235px;
+  height: 75px;
+  border-radius: 9px;
+  background-color: #112246;
+
+  .zone {
+    color: #F3F3F3;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+  }
+
+  .image {
+    padding: 10px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tooltip-details {
+    width: 100%;
+    margin-left: 10px;;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    .building-name {
+      color: #F3F3F3;
+    }
+
+    .consumption {
+      color: #EEAE3F;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+}
+
+
+.color_text{
+  fill: #fcff02;
+  paint-order: stroke;
+  stroke: #000000;
+  stroke-width: 4px;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  font-weight: 800;
+  font-family: monospace;
+}
+.color_text_hide{
+  fill: #cccccc;
+  paint-order: stroke;
+  stroke: #000000;
+  stroke-width: 4px;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  font-weight: 800;
+  font-family: monospace;
+}

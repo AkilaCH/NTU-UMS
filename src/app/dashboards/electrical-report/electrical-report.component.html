@@ -1,0 +1,53 @@
+<div class="card h-100">
+    <div class="card-header p-0">
+        <span class="d-none d-xl-block  pl-3 pt-3 pb-3 font-secondary">
+            <span>Electrical Report</span>
+            <span class="tab-primary float-right font-primary" (click)="setTabIndex(1)"
+                [ngClass]="{'active': tabIndex == 1}">Schedule</span>
+            <span class="tab-primary float-right font-primary" (click)="setTabIndex(0)"
+                [ngClass]="{'active': tabIndex == 0}">Export</span>
+        </span>
+        <div class="d-xl-none pl-3 pt-3 pb-3 font-secondary">
+            <div class="row w-100">
+                <div class="col-4">
+                    <select class="form-control form-control-sm styled-select-box"
+                        (change)="setTabIndex($event.target.value)" [(ngModel)]="tabIndex">
+                        <option value="0">Export</option>
+                        <option value="1">Schedule</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="card-body m-0 p-2">
+    <section *ngIf="tabIndex == 0" class="min-height-100">
+        <div class="chart-card" class="min-height-100">
+            <div class="chart-card-body" class="min-height-100">
+                <app-report-form
+                    [serviceType]="serviceType.ELECTRICAL"
+                    [isLoading]="isLoading"
+                    [buttonText]="buttonText"
+                    (initialData)="initialData($event)"
+                    (reGenerate)="reGenerate($event)"
+                    (download)="downloadExcel($event)">
+                </app-report-form>
+            </div>
+        </div>
+    </section>
+    <section *ngIf="tabIndex == 1" class="min-height-100 m-2">
+        <div class="chart-card" class="min-height-100">
+            <div class="chart-card-body" class="min-height-100">
+                <app-schedule-download
+                    [serviceType]="serviceType.ELECTRICAL"
+                    [isLoading]="isSchedulesLoading"
+                    [rows]="scheduleData"
+                    (locationType)="onChangeLocation($event)"
+                    (insertData)="insertData($event)"
+                    (updateData)="updateData($event)"
+                    (deleteData)="deleteSchedule($event)">
+                </app-schedule-download>
+            </div>
+        </div>
+    </section>
+  </div>
+</div>

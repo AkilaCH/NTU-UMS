@@ -1,0 +1,20 @@
+<app-modal titleText="Locations">
+  <div class="row app-navigator" >
+    <div class="col-md-12 col-lg-12 col-xl-12 p-0">
+
+      <section>
+        <ul style="margin: 0; padding: 0; list-style-type: none;">
+          <li>
+            <div class="top-level pt-2 pb-2 pl-3 item" style="padding-left: 10px !important;">{{ siteName }}</div>
+            <ul style="margin: 0; padding: 0; list-style-type: none;">
+              <li *ngFor="let loop of loops; let i = index">
+                <div (click)="navigate(loop.htLoopID, loop.htLoopName)" class="second-level pt-2 pb-2 pl-2 pr-2 active-item item container">{{ loop.htLoopName }}</div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</app-modal>

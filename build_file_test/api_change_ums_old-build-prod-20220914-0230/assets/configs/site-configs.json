@@ -1,0 +1,12 @@
+{
+    "siteId" : 1,
+    "siteName" : "Nanyang Technological Univerisity",
+    "decimalNumPrecision": 2,
+    "RealTimeConsumptiondecimalNumPrecision": 1,
+    "chillerData": {
+        "chiller": "Chiller kW",
+        "header": "Condenser Header"
+    },
+    "chillerEfficiencyBaseLineValue": 0.65,
+    "maxAllowDateRange": 31
+}

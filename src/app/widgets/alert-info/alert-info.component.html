@@ -1,0 +1,116 @@
+<app-modal titleText="Alert Information" [fullHeight]="false">
+    <div class="row" >
+      <div class="col-md-12 col-lg-12 col-xl-12 p-0">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-xl-12 p-3 d-flex">
+                <div>
+                    <table>
+                        <tbody *ngIf="alertInfo.type==='lt' || alertInfo.type==='water'">
+                            <tr class="data-row">
+                                <td>Equipment Name</td>
+                                <td class="data-cell">{{ alertInfo.data.selected[0].equipment }}</td>
+                            </tr>
+                            <tr class="data-row">
+                                <td>Detected Time ( 24 hours )</td>
+                                <td class="data-cell">{{alertInfo.data.selected[0].time}}</td>
+                            </tr>
+                            <tr class="data-row">
+                                <td>Detected Value</td>
+                                <td class="data-cell">{{alertInfo.data.selected[0].detectedValue}}</td>
+                            </tr>
+                            <tr class="data-row">
+                                <td>Threshold</td>
+                                <td class="data-cell">{{alertInfo.data.selected[0].benchmarkValue}}</td>
+                            </tr>
+                            <tr class="data-row">
+                                <td>Building Group</td>
+                                <td class="data-cell">{{alertInfo.data.selected[0].buildingGroup}}</td>
+                            </tr>
+                            <tr class="data-row">
+                                <td>Building</td>
+                                <td class="data-cell">{{alertInfo.data.selected[0].building}}</td>
+                            </tr>
+                            <tr class="data-row">
+                                <td>Level</td>
+                                <td class="data-cell">{{alertInfo.data.selected[0].level}}</td>
+                            </tr>
+                            <tr class="data-row">
+                                <td>Location</td>
+                                <td class="data-cell">{{alertInfo.data.selected[0].location}}</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td class="data-cell">{{ alertInfo.data.selected[0].status}}</td>
+                            </tr>
+                        </tbody>
+
+                        <tbody *ngIf="alertInfo.type==='ht'">
+                            <tr class="data-row">
+                                <td>Equipment Name</td>
+                                <td class="data-cell">{{ alertInfo.data.selected[0].equipment }}</td>
+                            </tr>
+                            <tr class="data-row">
+                                <td>Detected Time ( 24 hours )</td>
+                                <td class="data-cell">{{alertInfo.data.selected[0].time}}</td>
+                            </tr>
+                            <tr class="data-row">
+                                <td>Detected Value</td>
+                                <td class="data-cell">{{alertInfo.data.selected[0].detectedValue}}</td>
+                            </tr>
+                            <tr class="data-row">
+                                <td>Threshold</td>
+                                <td class="data-cell">{{alertInfo.data.selected[0].benchmarkValue}}</td>
+                            </tr>
+                            <tr class="data-row">
+                                <td>Substation</td>
+                                <td class="data-cell">{{alertInfo.data.selected[0].substation}}</td>
+                            </tr>
+                            <tr class="data-row">
+                                <td>Loop</td>
+                                <td class="data-cell">{{alertInfo.data.selected[0].loop}}</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td class="data-cell">{{ alertInfo.data.selected[0].status}}</td>
+                            </tr>
+                        </tbody>
+
+                        <tbody *ngIf="alertInfo.type==='chiller'">
+                            <tr class="data-row">
+                                <td>Equipment Name</td>
+                                <td class="data-cell">{{ alertInfo.data.selected[0].equipment }}</td>
+                            </tr>
+                            <tr class="data-row">
+                                <td>Detected Time ( 24 hours )</td>
+                                <td class="data-cell">{{alertInfo.data.selected[0].time}}</td>
+                            </tr>
+                            <tr class="data-row">
+                                <td>Detected Value</td>
+                                <td class="data-cell">{{alertInfo.data.selected[0].detectedValue}}</td>
+                            </tr>
+                            <tr class="data-row">
+                                <td>Threshold</td>
+                                <td class="data-cell">{{alertInfo.data.selected[0].benchmarkValue}}</td>
+                            </tr>
+                            <tr class="data-row">
+                                <td>Plant</td>
+                                <td class="data-cell">{{alertInfo.data.selected[0].plant}}</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td class="data-cell">{{ alertInfo.data.selected[0].status}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button [disabled]="alertInfo.data.selected[0].status=='Pending'?false:true" class="btn btn-primary btn-primary-fill w-100 mt-2" (click)="confirmAknowledge()">Acknowledge</button>
+                </div>
+                <div [ngClass]="{'chart-holder-flex':!chartData}" class="chart-holder flex-fill">
+                    <app-line2d [dataSource]="chartData" *ngIf="chartData"></app-line2d>
+                    <p *ngIf="!chartData">Loading...</p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </app-modal>
+  

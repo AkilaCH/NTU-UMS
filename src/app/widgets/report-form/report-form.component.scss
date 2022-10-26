@@ -1,0 +1,57 @@
+.form-content {
+    font-size: 14px;
+}
+
+.fieldset {
+    border: 1px solid #fff;
+    width: 500px;
+}
+  
+.fieldset>legend {
+    font-size: 16px;
+    width: auto !important;
+    padding: 0 5px 0 5px;
+    color: #fff;
+    margin: 0 0 0 10px;
+}
+
+hr {
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-top: 1px solid #fff;
+}
+
+.action-btn {
+    button {
+        width: 225px;
+    }
+}
+
+.btn-primary{
+    background-color: #0069d9 !important;
+}
+  
+.btn-primary.active{
+    border-color: #0069d9 !important;
+}
+
+.row-limit {
+    font-size: 14px;
+}
+
+.loading-area {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-icon {
+    width: 75px;
+    height: auto;
+}
+
+.button-border {
+    border: 1px solid #4296ff;
+}

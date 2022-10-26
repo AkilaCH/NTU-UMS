@@ -1,0 +1,68 @@
+<div class="row" *ngIf="type=='ht'">
+    <div class="col-12 col-sm-6 col-md-6 pl-0 col-lg-3 col-xl-2">
+        <app-input-field label="Loop">
+            <app-combo-box [disable]="disabled" dark="false" [dataSource]="loops" (selectedChange)="onLoopChange($event)"></app-combo-box>
+        </app-input-field>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-2">
+        <app-input-field label="Substation">
+            <app-combo-box dark="false" [selected]="substationId" [dataSource]="substations" [disable]="loopId==0 || disabled" (selectedChange)="onSubstationChange($event)"></app-combo-box>
+        </app-input-field>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-2" *ngIf="tabType=='summary'">
+        <app-input-field label="Status">
+            <app-combo-box dark="false" [dataSource]="status" (selectedChange)="onStatusChange($event)"></app-combo-box>
+        </app-input-field>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-2" *ngIf="tabType=='configs' && showActive">
+        <app-input-field label="Activate">
+            <app-combo-box dark="false" [dataSource]="activates" (selectedChange)="onActivateChange($event)"></app-combo-box>
+        </app-input-field>
+    </div>
+</div>
+  
+<div class="row" *ngIf="type == 'lt' || type == 'water'">
+    <div class="col-12 col-sm-6 col-md-6 pl-0 col-lg-3 col-xl-2">
+        <app-input-field label="Building Group">
+            <app-combo-box [disable]="disabled" dark="false" [dataSource]="buildingGroups" (selectedChange)="onBuildingGroupChange($event)"></app-combo-box>
+        </app-input-field>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-2">
+        <app-input-field label="Building">
+            <app-combo-box dark="false" [selected]="buildingId" [dataSource]="buildings" [disable]="buildingGroupId == 0 || disabled" (selectedChange)="onBuildingChange($event)"></app-combo-box>
+        </app-input-field>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-2">
+        <app-input-field label="Level">
+            <app-combo-box dark="false" [selected]="levelId" [dataSource]="levels" [disable]="buildingGroupId == 0 || buildingId == 0 || disabled" (selectedChange)="onLevelChange($event)"></app-combo-box>
+        </app-input-field>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-2" *ngIf="tabType=='summary'">
+        <app-input-field label="Status">
+            <app-combo-box dark="false" [dataSource]="status" (selectedChange)="onStatusChange($event)"></app-combo-box>
+        </app-input-field>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-2" *ngIf="tabType=='configs' && showActive">
+        <app-input-field label="Activate">
+            <app-combo-box dark="false" [dataSource]="activates" (selectedChange)="onActivateChange($event)"></app-combo-box>
+        </app-input-field>
+    </div>
+</div>
+
+<div class="row" *ngIf="type=='chiller'">
+    <div class="col-12 col-sm-6 col-md-6 pl-0 col-lg-3 col-xl-2">
+        <app-input-field label="Plant">
+            <app-combo-box [disable]="disabled" dark="false" [dataSource]="plants" (selectedChange)="onPlantChange($event)"></app-combo-box>
+        </app-input-field>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-2" *ngIf="tabType=='summary'">
+        <app-input-field label="Status">
+            <app-combo-box dark="false" [dataSource]="status" (selectedChange)="onStatusChange($event)"></app-combo-box>
+        </app-input-field>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-2" *ngIf="tabType=='configs' && showActive">
+        <app-input-field label="Activate">
+            <app-combo-box dark="false" [dataSource]="activates" (selectedChange)="onActivateChange($event)"></app-combo-box>
+        </app-input-field>
+    </div>
+</div>

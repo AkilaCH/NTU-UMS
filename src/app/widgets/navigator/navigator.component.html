@@ -1,0 +1,97 @@
+<app-modal titleText="Locations">
+  <div class="row" >
+    <div class="col-md-12 col-lg-12 col-xl-12 p-0 app-navigator">
+
+      <section *ngIf="boardLevel == 0">
+        <ul style="margin: 0; padding: 0; list-style-type: none;">
+          <li *ngFor="let site of datasourse">
+            <div class="top-level pt-2 pb-2 pl-3 item" style="padding-left: 10px !important;">{{ site.siteName }}</div>
+            <ul style="margin: 0; padding: 0; list-style-type: none;">
+              <li *ngFor="let category of site.siteCategories; let i = index">
+                <div *ngIf="category.buildingList.length != 0" (click)="expandCallpse(i)" [ngStyle]="{'background-color': callapseCat[i] ? '#007bff' : '#3c617d'}" class="second-level pt-2 pb-2 pl-2 pr-2 active-item item container">
+                  {{ category.categoryName }}
+                  <fa-icon class="browse fa-lg ml-3 float-right clickable" [icon]="callapseCat[i]?arrowUp:arrowDown"></fa-icon>
+                </div>
+                <ul *ngIf="callapseCat[i]" style="margin: 0; padding: 0; list-style-type: none;">
+                  <li *ngFor="let buildingGroup of category.buildingList; let j = index">
+                    <div class="second-level p-0 ml-2" [ngStyle]="{'background-color': buildingGroups[i][j] ? '#007bff' : '#293946'}">
+                      <div class="item pt-2 pb-2 pl-2 pr-2" (click)="expandGroup(i, j)">
+                        <div class="row p-0">
+                          <!-- <div class="col col-sm-11 clickable p-0" (click)="navigateToUrl('/electrical-building-group/'+buildingGroup.buildingGroupID, buildingGroup.buildingGroupID, buildingGroup.buildingGroupName)"> -->
+                          
+                          <div class="col col-sm-11 clickable p-0">
+                            <span>{{ buildingGroup.buildingGroupName }}</span>
+                          </div>
+                          <div class="col col-sm-1 p-0">
+                            <fa-icon class="browse fa-md ml-2 float-right clickable"  [icon]="buildingGroups[i][j]?arrowUp:arrowDown"></fa-icon>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <ul *ngIf="buildingGroups[i][j]" style="margin: 0; padding: 0; list-style-type: none;">
+                      <li *ngIf="buildingGroup.data.length > 1">
+                        <div class="second-level pt-2 pb-2 item pl-2 pr-2 ml-4 clickable" (click)="navigateToUrl('/electrical-building-group/'+buildingGroup.buildingGroupID, buildingGroup.buildingGroupID, buildingGroup.buildingGroupName)">
+                          <span>(All)</span>
+                        </div>
+                      </li>
+                      <li *ngFor="let data of buildingGroup.data">
+                        <div *ngIf="buildingGroup.data.length != 0" (click)="navigateToUrl('/electrical/'+data.buildingID, data.buildingID, data.buildingName)" class="second-level pt-2 pb-2 item pl-2 pr-2 ml-4 clickable">
+                          {{data.buildingName}}
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section *ngIf="boardLevel == 1">
+        <ul style="margin: 0; padding: 0; list-style-type: none;">
+          <li *ngFor="let site of datasourse">
+            <div class="top-level pt-2 pb-2 pl-3 item">{{ site.siteName }}</div>
+            <ul style="margin: 0; padding: 0; list-style-type: none;">
+              <li *ngFor="let category of site.siteCategories; let i = index">
+                <div *ngIf="category.buildingList.length != 0" (click)="expandCallpse(i)" [ngStyle]="{'background-color': callapseCat[i] ? '#007bff' : '#3c617d'}" class="second-level pt-2 pb-2 pl-2 pr-2 active-item item container">
+                  {{ category.categoryName }}
+                  <fa-icon class="browse fa-lg ml-3 float-right clickable" [icon]="callapseCat[i]?arrowUp:arrowDown"></fa-icon>
+                </div>
+                <ul *ngIf="callapseCat[i]" style="margin: 0; padding: 0; list-style-type: none;">
+                  <li *ngFor="let buildingGroup of category.buildingList; let j = index">
+                    <div class="second-level p-0 ml-2" [ngStyle]="{'background-color': buildingGroups[i][j] ? '#007bff' : '#293946'}">
+                      <div class="item pt-2 pb-2 pl-2 pr-2" (click)="expandGroup(i, j)">
+                        <div class="row p-0">
+                          <div class="col col-sm-11 clickable p-0" >
+                            <span>{{ buildingGroup.buildingGroupName }}</span>
+                          </div>
+                          <div class="col col-sm-1 p-0">
+                            <fa-icon class="browse fa-md ml-2 float-right clickable"  [icon]="buildingGroups[i][j]?arrowUp:arrowDown"></fa-icon>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <ul *ngIf="buildingGroups[i][j]" style="margin: 0; padding: 0; list-style-type: none;">
+                      <li *ngIf="buildingGroup.data.length > 1">
+                        <div class="second-level pt-2 pb-2 item pl-2 pr-2 ml-4 clickable" (click)="navigateToUrl('/water-building-group/'+buildingGroup.buildingGroupID, buildingGroup.buildingGroupID, buildingGroup.buildingGroupName)">
+                          <span>(All)</span>
+                        </div>
+                      </li>
+                      <li *ngFor="let data of buildingGroup.data">
+                        <div *ngIf="buildingGroup.data.length != 0" (click)="navigateToUrl('/water/'+data.buildingID, data.buildingID, data.buildingName)" class="second-level pt-2 pb-2 item pl-2 pr-2 ml-4 clickable">
+                          {{data.buildingName}}
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</app-modal>

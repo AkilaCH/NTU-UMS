@@ -1,0 +1,89 @@
+.loading-area {
+    width: 100%;
+    height: 750px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-icon {
+    width: 75px;
+    height: auto;
+}
+.wrapper_cutom{
+    position: relative;
+    span{
+        z-index: 2;
+        color: #293946;
+        top: 3px;
+        right: 5px;
+        position: absolute;
+        padding-left: 5px;
+        font-size: 13px;
+    }
+    input{
+        padding-right: 103px;
+        max-width: 235px;
+        padding-left: 10px;
+        font-size: 13px;
+        border-style: none;
+        min-height: 27px;
+        border-radius: .2rem;
+    }
+}
+.show-popup{
+    display: flex !important;
+    opacity: 1 !important;
+}
+.popup-confirm{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 999999;
+    background-color: rgba(0,0,0,.4);
+    // display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    top: 0;
+    transition: all .3s;-webkit-transition: all .3s;
+    opacity: 0;
+    display: none;
+    .popup-content{
+        position: relative;
+        z-index: 2;
+        background-color: #5a5a5a;
+        padding: 15px;
+        max-width: 400px;
+        .popup-content-inside{
+            .popup-content-text{
+                h3{
+                    font-size: 17px;
+                    text-align: center;
+                }
+            }
+        }
+        .popup-content-action{
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            .btn{
+                background-color: #9f4040;
+                color: #fff;
+                border: none;
+                padding: 6px 15px;
+                min-width: 100px;
+                cursor: pointer;
+                transition: all .3s;-webkit-transition: all .3s;
+                opacity: .8;
+                &:hove{
+                    opacity: 1;
+                }
+            }
+            .btn-yes{
+                background-color: #40979f;
+            }
+        }
+    }
+}

@@ -1,0 +1,91 @@
+<div class="card main-card-height" id ="heatBalance">
+    <div class="card-header p-0">
+        <span class="d-none d-xl-block  pl-3 pt-3 pb-3 font-secondary">
+            <span class="d-inline-block font-secondary mr-4">
+                Date Range<br>
+                <date-range-picker [disabled] = "!isDone.heatBalanceDataSource" [maxDate]="today" [maxDateRange]="'1month'" position="bottom-left" [(dateRange)]="dateRange" (dateRangeChange)="dateRangedChanged()">
+                </date-range-picker>
+            </span>
+            <span class="d-inline-block font-secondary mr-4">
+                Plant
+                <app-combo-box [disable] = "!isDone.heatBalanceDataSource" class="select-box-dark" [dataSource]="plantList" [selected]="selectedPlant" [enableAll]="false"
+                    (selectedChange)="plantChanged($event)"></app-combo-box>
+            </span>
+            <span class="d-inline-block font-secondary mr-4">
+                yScale
+                <app-combo-box [disable] = "!isDone.heatBalanceDataSource" class="select-box-dark" [dataSource]="scaleList" [selected]="scaleListSelected" [enableAll]="false"
+                  (selectedChange)="scaleChanged($event)"></app-combo-box>
+            </span>
+
+            <span class="tab-primary float-right font-primary" (click)="setTabIndex(1)"
+                [ngClass]="{'active': tabIndex == 1}">Table</span>
+            <span class="tab-primary float-right font-primary" (click)="setTabIndex(0)"
+                [ngClass]="{'active': tabIndex == 0}">Chart</span>
+        </span>
+        <div class="d-xl-none pl-3 pt-3 pb-3 font-secondary">
+            <div class="row w-100">
+                <div class="col-8">
+                    <div class="mb-2">
+                        Date Range
+                        <date-range-picker [disabled] = "!isDone.heatBalanceDataSource" [maxDate]="today" [maxDateRange]="'1month'" [disabled]="chartLoading" position="bottom-left" [(dateRange)]="dateRange" (dateRangeChange)="dateRangedChanged()">
+                        </date-range-picker>
+                    </div>
+                    <span class="d-inline-block font-secondary mr-4">
+                        Plant
+                        <app-combo-box [disable] = "!isDone.heatBalanceDataSource" class="select-box-dark" [dataSource]="plantList" [selected]="selectedPlant" [enableAll]="false"
+                            (selectedChange)="plantChanged($event)"></app-combo-box>
+                    </span>
+                    <span class="d-inline-block font-secondary mr-4">
+                        yScale
+                        <app-combo-box [disable] = "!isDone.heatBalanceDataSource" class="select-box-dark" [disable]="chartLoading" [dataSource]="scaleList" [selected]="scaleListSelected" [enableAll]="false"
+                          (selectedChange)="scaleChanged($event)"></app-combo-box>
+                    </span>
+                </div>
+                <div class="col-4 ">
+                    <select class="form-control form-control-sm select-box-dark" (change)="setTabIndex($event.target.value)" [(ngModel)]="tabIndex">
+                        <option value="0">Chart</option>
+                        <option value="1">Table</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section *ngIf="tabIndex == 0" style="position: relative;">
+        <div class="card-body main-card-height card-scroll">
+            <!-- <div *ngIf="chartLoading" class="loading-area">
+                <img  alt="loader" class="loading-icon" src="assets/img/loader.svg" />
+            </div> -->
+            <div class="p-3 ml-2">
+                <app-print-preview *ngIf="!chartLoading && heatBalanceDataSource"  [className]="'customp-chiller-efficiency'" [targetHtml] = "'heatBalance'" [title]="'Chiller Heat Balance'"></app-print-preview>
+
+                <!-- <app-multi-series [height]="'80%'" *ngIf="!chartLoading && heatBalanceDataSource" [fixedWidth]="true" [dataSource]="heatBalanceDataSource"></app-multi-series> -->
+                <app-chart-loader [isDone] = "isDone.heatBalanceDataSource">
+                    <app-zoomline  [height]="'85%'" [fixedWidth]="true" [dataSource]="heatBalanceDataSource"></app-zoomline>
+                </app-chart-loader>
+            </div>
+        </div>
+    </section>
+    <section *ngIf="tabIndex == 1">
+        <div class="card-body main-card-height card-scroll">
+            <div *ngIf="chartLoading" class="loading-area">
+                <img  alt="loader" class="loading-icon" src="assets/img/loader.svg" />
+            </div>
+            <ngx-datatable *ngIf="!chartLoading" class="dark" [rows]="rows" [sortType]="sortType.multi" [columnMode]="columnMode.standard"
+                [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="18">
+                <ngx-datatable-column name="Date Time" [width]="(tableWidth | async)">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.dateTime}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Heat &nbsp;Balance &nbsp;(kW)" [width]="(tableWidth | async)">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.heat_balance == null ? 'N/A' : row.heat_balance | number:'1.0-2'}}
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+            <div *ngIf="!chartLoading && rows.length !=0" class="export-button">
+                <button class="btn dark-button" type="button" (click)="exportToExcel()">Export to Excel</button>
+            </div>
+        </div>
+    </section>
+</div>

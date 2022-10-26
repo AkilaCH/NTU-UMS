@@ -1,0 +1,7 @@
+<div class="row fluid-margin">
+  <div class="col-md-12 p-3 header text-center pl-4">
+    <button class="d-inline-block clickable btn btn-primary mr-2 ml-2 float-left btn-menu-sidebar" (click)="toggleSideBar()"><fa-icon [icon]="homeIcon"></fa-icon></button>
+    <p [ngClass]="(isMobile())?'mobileHeader':'desktopHeader'" class="d-inline-block mb-0">{{ selectedItem }} <fa-icon class="browse fa-lg ml-3" [icon]="editIcon" *ngIf="boardLevel != 2" (click)="open()"></fa-icon></p>
+    <app-notification-panel [notifications]="allNotifications" class="float-right pr-4 mt-2"></app-notification-panel>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+@import 'src/scss/_variables.scss';
+
+.topic {
+  font-size: $size-font-pointer;
+  font-weight: 500;
+
+  p {
+    font-size: $size-font-primary;
+    font-weight: 400;
+  }
+
+  .text-elec {
+    color: $font-warning;
+  }
+
+  .text-water {
+    color: $bg-primary;
+  }
+
+  .text-cooling {
+    color: #00dcff;
+  }
+
+  small {
+    font-size: $size-font-header-btn;
+  }
+
+  .time {
+    font-size: $size-font-low;
+    font-weight: 300;
+  }
+}
+
+.card-scroll {
+  min-height: 90vh;
+  max-height: 90vh;
+}
+
+.unit-size{
+  font-size: 1.4rem;
+}
+
+.column-seperator {
+  border-right: 1px solid #2F4251;
+}
+
+.monthly-consumption {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 53px);
+  padding: 7px;
+  padding-bottom: 0;
+  background-color: #2f4251;
+  padding-top: 0;
+  .field {
+    flex: 1;
+    border: 1px solid #727272;
+    margin-bottom: 7px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:  rgb(41 57 70);
+    border-color: transparent;
+    padding-top: 25px;
+    .title {
+      font-size: 16px;
+    }
+
+    .value {
+      font-size: 24px;
+    }
+  }
+}
+
+
+.customs-consuption{
+  .title{
+    position: absolute;
+    top: 6px;
+    font-size: 14px !important;
+  }
+  img{
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+div.customs-activity-consumption{
+  padding-top: 0 !important;
+}
+
+div.customs-activity-consumption{
+  .content-item{
+    background-color:  #2f4251;
+    padding-top: 0 !important;
+    .pointer-container{
+      background-color: rgb(41 57 70) !important;
+    }
+  }
+}

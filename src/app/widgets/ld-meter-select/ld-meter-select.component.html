@@ -1,0 +1,100 @@
+<div class="chart-card content">
+    <div class="chart-card-header">
+        <div class="header-content">
+            <div class="header-title">Select Meters</div>
+        </div>
+        <div>
+            <button (click)="close()" class="close-button" title="close" type="button">
+                <svg height="20" viewBox="0 0 24 24" width="20">
+                    <path fill="#fff" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div class="chart-card-body body-content">
+        <app-form-container fieldName="Filtration">
+            <div class="row ml-3">
+                <app-input-field label="Building Group" class="mr-3">
+                    <app-combo-box
+                    dark="false"
+                    [dataSource]="buildingGroups"
+                    (selectedChange)="onBuildingGroupChange($event.value)">
+                    </app-combo-box>
+                </app-input-field>
+                <app-input-field label="Building" class="mr-3">
+                    <app-combo-box
+                    dark="false"
+                    [dataSource]="buildings"
+                    (selectedChange)="onBuildingChange($event.value)">
+                    </app-combo-box>
+                </app-input-field>
+                <app-input-field label="Level">
+                    <app-combo-box
+                    dark="false"
+                    [dataSource]="levels"
+                    (selectedChange)="onLevelChange($event.value)">
+                    </app-combo-box>
+                </app-input-field>
+                <app-input-field label="Search" style="position: absolute; right: 40px;">
+                    <input type="search" placeholder="Search Meter" (input)="onSearchChange($event.target.value)">
+                </app-input-field>
+            </div>
+        </app-form-container>
+        <div *ngIf="!isLoading" class="table-buttons">
+            <ngx-datatable
+                class="dark mt-3"
+                [rows]="rows"
+                [columnMode]="ColumnMode.force"
+                [headerHeight]="50"
+                [footerHeight]="50"
+                rowHeight="auto"
+                [limit]="5"
+                [selected]="selected"
+                [selectionType]="SelectionType.checkbox"
+                [selectAllRowsOnPage]="false"
+                (select)="onSelect($event)">
+                <ngx-datatable-column
+                    [width]="30"
+                    [sortable]="false"
+                    [canAutoResize]="false"
+                    [draggable]="false"
+                    [resizeable]="false"
+                    [headerCheckboxable]="true"
+                    [checkboxable]="true">
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Building Group">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.buildingGroupName}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Building">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.buildingName}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Level">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.level}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Meter Type">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.meterTypeName}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Meter Name">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.meterName}}
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+            <div class="d-flex justify-content-end mt-3  mb-3">
+                <button [disabled]="selected.length == 0" (click)="onSelectMeters()" class="d-inline-block clickable  btn-sm btn btn-primary mr-2 ml-2 float-left">Select</button>
+                <button (click)="onCancel()" class="d-inline-block clickable  btn-sm btn btn-primary mr-2 ml-2 float-left">Cancel</button>
+            </div>
+        </div>
+        <div *ngIf="isLoading" class="loading-area">
+            <img  alt="loader" class="loading-icon" src="assets/img/loader.svg" />
+        </div>
+    </div>
+</div>

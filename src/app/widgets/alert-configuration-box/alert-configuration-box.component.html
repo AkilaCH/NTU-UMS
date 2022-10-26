@@ -1,0 +1,92 @@
+<app-modal titleText="Manual Mode Settings" [fullHeight]="false">
+    <div class="row" >
+      <div class="col-md-12 col-lg-12 col-xl-12 p-0">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-xl-12 p-3 d-flex">
+                <div class="flex-fill">
+                    <table>
+                        <tbody>
+                            <tr class="data-row" *ngIf="alertInfo.data.row.buildingGroup">
+                                <td>Building Group</td>
+                                <td class="data-cell">{{alertInfo.data.row.buildingGroup.name}}</td>
+                            </tr>
+                            <tr class="data-row" *ngIf="alertInfo.data.row.building">
+                                <td>Building</td>
+                                <td class="data-cell">{{alertInfo.data.row.building.name}}</td>
+                            </tr>
+                            <tr class="data-row" *ngIf="alertInfo.data.row.level">
+                                <td>Level</td>
+                                <td class="data-cell">{{alertInfo.data.row.level.name}}</td>
+                            </tr>
+                            <tr class="data-row" *ngIf="alertInfo.data.row.location.name">
+                                <td>Location</td>
+                                <td class="data-cell">{{alertInfo.data.row.location.name}}</td>
+                            </tr>
+                            <tr class="data-row" *ngIf="alertInfo.data.row.meterType">
+                                <td>Meter Type</td>
+                                <td class="data-cell">{{alertInfo.data.row.meterType.name}}</td>
+                            </tr>
+                            <tr class="data-row" *ngIf="alertInfo.data.row.loop">
+                                <td>Loop</td>
+                                <td class="data-cell">{{alertInfo.data.row.loop.name}}</td>
+                            </tr>
+                            <tr class="data-row" *ngIf="alertInfo.data.row.substation">
+                                <td>Substation</td>
+                                <td class="data-cell">{{alertInfo.data.row.substation.name}}</td>
+                            </tr>
+                            <tr class="data-row" *ngIf="alertInfo.data.row.plant">
+                                <td>Plant</td>
+                                <td class="data-cell">{{alertInfo.data.row.plant.name}}</td>
+                            </tr>
+                            <tr class="data-row" *ngIf="alertInfo.data.row.equipment">
+                                <td>Equipment</td>
+                                <td class="data-cell">{{alertInfo.data.row.equipment}}</td>
+                            </tr>
+                            <tr class="data-row" *ngIf="alertInfo.data.row.toggle">
+                                <td>Status</td>
+                                <td class="data-cell">{{alertInfo.data.row.toggle?'Enabled':'Disabled'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="field-container">
+                    <form [formGroup]="benchMarkForm" (ngSubmit)="submitForm()">
+                        <table>
+                            <tr>
+                                <td>Monday</td>
+                                <td><input formControlName="mondayBV" [ngClass]="{'error': mondayBV.invalid && mondayBV.touched}" class="form-full-width"></td>
+                            </tr>
+                            <tr>
+                                <td>Tuesday</td>
+                                <td><input formControlName="tuesdayBV" [ngClass]="{'error': tuesdayBV.invalid && tuesdayBV.touched}" class="form-full-width"></td>
+                            </tr>
+                            <tr>
+                                <td>Wednesday</td>
+                                <td><input formControlName="wednesdayBV" [ngClass]="{'error': wednesdayBV.invalid && wednesdayBV.touched}" class="form-full-width"></td>
+                            </tr>
+                            <tr>
+                                <td>Thursday</td>
+                                <td><input formControlName="thursdayBV" [ngClass]="{'error': thursdayBV.invalid && thursdayBV.touched}" class="form-full-width"></td>
+                            </tr>
+                            <tr>
+                                <td>Friday</td>
+                                <td><input formControlName="fridayBV" [ngClass]="{'error': fridayBV.invalid && fridayBV.touched}" class="form-full-width"></td>
+                            </tr>
+                            <tr>
+                                <td>Saturday</td>
+                                <td><input formControlName="saturdayBV" [ngClass]="{'error': saturdayBV.invalid && saturdayBV.touched}" class="form-full-width"></td>
+                            </tr>
+                            <tr>
+                                <td>Sunday</td>
+                                <td><input formControlName="sundayBV" [ngClass]="{'error': sundayBV.invalid && sundayBV.touched}" class="form-full-width"></td>
+                            </tr>
+                        </table>
+                        <button type="submit" [disabled]="benchMarkForm.invalid" class="btn btn-primary btn-primary-fill mt-3 float-right">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </app-modal>
+  

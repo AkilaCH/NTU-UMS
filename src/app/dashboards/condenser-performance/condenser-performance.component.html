@@ -1,0 +1,99 @@
+<div class="card main-card-height" id ="condernserPerformance">
+  <div class="card-header p-0">
+    <span class="d-none d-xl-block  pl-3 pt-3 pb-3 font-secondary">
+      <span class="d-inline-block font-secondary mr-4">
+        Date Range<br>
+        <date-range-picker [maxDate]="today" [maxDateRange]="'1month'" [disabled]="!isDone.condenserPerformanceChartData" position="bottom-left" [(dateRange)]="dateRange" (dateRangeChange)="dateRangedChanged()">
+        </date-range-picker>
+      </span>
+      <span class="d-inline-block font-secondary mr-4">
+        Plant
+        <app-combo-box class="select-box-dark" [disable]="!isDone.condenserPerformanceChartData" [dataSource]="plantList" [selected]="selectedPlant" [enableAll]="false"
+          (selectedChange)="plantChanged($event)"></app-combo-box>
+      </span>
+      <span class="d-inline-block font-secondary mr-4">
+        Header
+        <app-combo-box class="select-box-dark" [disable]="!isDone.condenserPerformanceChartData" [dataSource]="headerList" [selected]="selectedHeader" [enableAll]="false"
+          (selectedChange)="headerChanged($event)"></app-combo-box>
+      </span>
+      <span class="tab-primary float-right font-primary" (click)="setTabIndex(1)"
+        [ngClass]="{'active': tabIndex == 1}">Table</span>
+      <span class="tab-primary float-right font-primary" (click)="setTabIndex(0)"
+        [ngClass]="{'active': tabIndex == 0}">Chart</span>
+    </span>
+    <div class="d-xl-none pl-3 pt-3 pb-3 font-secondary">
+      <div class="row w-100">
+        <div class="col-8">
+          <span class="d-inline-block font-secondary mr-4">
+            Date Range
+            <date-range-picker [maxDate]="today" [maxDateRange]="'1month'" [disabled]="!isDone.condenserPerformanceChartData" position="bottom-left" [(dateRange)]="dateRange" (dateRangeChange)="dateRangedChanged()">
+            </date-range-picker>
+          </span>
+          <span class="d-inline-block font-secondary mr-4">
+            Plant
+            <app-combo-box class="select-box-dark" [disable]="!isDone.condenserPerformanceChartData" [dataSource]="plantList" [selected]="selectedPlant" [enableAll]="false"
+              (selectedChange)="plantChanged($event)"></app-combo-box>
+          </span>
+          <span class="d-inline-block font-secondary mr-4">
+            Header
+            <app-combo-box class="select-box-dark" [disable]="!isDone.condenserPerformanceChartData" [dataSource]="headerList" [selected]="selectedHeader" [enableAll]="false"
+              (selectedChange)="headerChanged($event)"></app-combo-box>
+          </span>
+        </div>
+        <div class="col-4 ">
+          <select [disabled] = "!isDone.condenserPerformanceChartData" class="form-control form-control-sm styled-select-box" (change)="setTabIndex($event.target.value)"
+            [(ngModel)]="tabIndex">
+            <option value="0">Chart</option>
+            <option value="1">Table</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section *ngIf="tabIndex == 0" >
+    <div class="card-body main-card-height card-scroll" style="position: relative">
+      <!-- <div *ngIf="chartLoading" class="loading-area">
+        <img  alt="loader" class="loading-icon" src="assets/img/loader.svg" />
+      </div> -->
+      <div class="p-3 ml-1" >
+        <app-print-preview *ngIf="!chartLoading && condenserPerformanceChartData"  [className]="'customp-chiller-condencer'" [targetHtml] = "'condernserPerformance'" [title]="'Condenser Performance'"></app-print-preview>
+        <app-chart-loader [isDone] = "isDone.condenserPerformanceChartData">
+          <app-zoomscatter  [fixedWidth]="true" [dataSource]="condenserPerformanceChartData"></app-zoomscatter>
+        </app-chart-loader>
+      </div>
+    </div>
+  </section>
+  <section *ngIf="tabIndex == 1">
+    <div class="card-body main-card-height card-scroll">
+      <div *ngIf="chartLoading" class="loading-area">
+        <img  alt="loader" class="loading-icon" src="assets/img/loader.svg" />
+      </div>
+      <ngx-datatable *ngIf="!chartLoading" class="dark" [rows]="rows" [sortType]="sortType.multi" [columnMode]="columnMode.standard"
+        [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="18">
+        <ngx-datatable-column name="Date" [width]="(tableWidth | async)">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.dateTime | date: 'y/MM/dd HH:mm'}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Supply &nbsp;Temperature &nbsp;(&deg;C)" [width]="(tableWidth | async)">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.cdw_supply_temp == null ? 'N/A' : row.cdw_supply_temp | number:'1.0-2'}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Return &nbsp;Temperature &nbsp;(&deg;C)" [width]="(tableWidth | async)">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.cdw_return_temp == null ? 'N/A' : row.cdw_return_temp | number:'1.0-2'}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Ambient &nbsp;Temperature &nbsp;(&deg;C)" [width]="(tableWidth | async)">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.dry_bulb == null ? 'N/A' : row.dry_bulb | number:'1.0-2'}}
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+      <div *ngIf="!chartLoading && rows.length !=0" class="export-button">
+        <button class="btn dark-button" type="button" (click)="exportToExcel()">Export to Excel</button>
+      </div>
+    </div>
+  </section>
+</div>

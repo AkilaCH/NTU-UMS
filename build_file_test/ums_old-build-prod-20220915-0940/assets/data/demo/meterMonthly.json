@@ -1,0 +1,132 @@
+{
+    "chart": {
+      "caption": "",
+      "placeholder": "",
+      "subCaption": "",
+      "xAxisName": "Months of 2021",
+      "yAxisName": "Consumption (kWh)",
+      "baseFont": "Poppins",
+      "loadMessage": "",
+      "canvasBaseColor": "#ffffff",
+      "canvasBaseDepth": 4,
+      "showCanvasBg": false,
+      "baseFontColor": "#ffffff",
+      "baseFontSize": 14,
+      "theme": "carbon",
+      "xAxisNameFontColor": "#ffffff",
+      "xAxisNameFontSize": 14,
+      "xAxisNameFontBold": false,
+      "yAxisNameFontColor": "#ffffff",
+      "yAxisNameFontSize": 14,
+      "yAxisNameFontBold": false,
+      "palettecolors": "#007bff,#29c3be",
+      "use3DLighting": 0,
+      "bgColor": "#293946",
+      "bgAlpha": 100,
+      "exportenabled": 1,
+      "exportformats": "JPG=Export as Image|PDF=Export as PDF",
+      "exportFileName": "Change In Energy Consumption",
+      "toolbarButtonColor": "#455f73",
+      "toolbarButtonScale": 1.5
+    },
+    "categories": [
+        {
+            "category": [
+                {
+                    "label": "January"
+                },
+                {
+                    "label": "February"
+                },
+                {
+                    "label": "March"
+                },
+                {
+                    "label": "April"
+                },
+                {
+                    "label": "May"
+                },
+                {
+                    "label": "June"
+                },
+                {
+                    "label": "July"
+                },
+                {
+                    "label": "August"
+                },
+                {
+                    "label": "September"
+                },
+                {
+                    "label": "October"
+                },
+                {
+                    "label": "November"
+                },
+                {
+                    "label": "December"
+                }
+                
+            ]
+        }
+    ],
+    "dataset": [
+        {
+            "seriesname": "DB/SAMPLE 02",
+            "data": [
+                {
+                    "value": "100"
+                },
+                {
+                    "value": "115"
+                },
+                {
+                    "value": "125"
+                },
+                {
+                    "value": "150"
+                },
+                {
+                    "value": "100"
+                },
+                {
+                    "value": "115"
+                },
+                {
+                    "value": "125"
+                }
+                
+            ]
+        },
+        {
+            "seriesname": "DB/SAMPLE 03",
+            "data": [
+                {
+                    "value": "220"
+                },
+                {
+                    "value": "215"
+                },
+                {
+                    "value": "105"
+                },
+                {
+                    "value": "190"
+                },
+                {
+                  "value": "220"
+                },
+                {
+                    "value": "215"
+                },
+                {
+                    "value": "105"
+                }
+                
+                
+            ]
+        }
+    ]
+  }

@@ -1,0 +1,6 @@
+<input type="checkbox" [attr.id]="key" [(ngModel)]="switch" (change)="switchChange.emit($event.target.checked)">
+<label class="toggle-button-switch" [attr.for]="key"></label>
+<label class="toggle-button-text" [attr.for]="key">
+    <div class="toggle-button-text-on">O</div>
+    <div class="toggle-button-text-off">O</div>
+</label>

@@ -1,0 +1,186 @@
+<form *ngIf="!isLoading" [formGroup]="configurationForm">
+  <ngx-datatable #table class="dark"
+    [rows]="rows"
+    [sortType]="SortType.multi"
+    [headerHeight]="40"
+    [footerHeight]="40"
+    [columnMode]="ColumnMode.standard"
+    rowHeight="auto"
+    [limit]="8"
+    [loadingIndicator]="true"
+    [reorderable]="true"
+    rowHeight="auto"
+    [offset]="tableOffset"
+    (page)="onPageChange($event)">
+    <ngx-datatable-column name="Building Group" prop="buildingGroup.name" [width]="(tableWidth | async)" *ngIf="type == 'lt' || type == 'water'">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action != 'insert'">
+          {{ row.buildingGroup.name?row.buildingGroup.name:'N/A' }}
+        </span>
+        <div *ngIf="row.action == 'insert'">
+          <select formControlName="buildingGroup" (change)="changeBuildingGroup($event.target.value)" class="w-100 white-select-box">
+            <option *ngFor="let buildingGroup of buildingGroups" [value]="buildingGroup.id">{{buildingGroup.name}}</option>
+          </select>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Building" prop="building.name" [width]="(tableWidth | async)" *ngIf="type == 'lt' || type == 'water'">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action != 'insert'">
+          {{ row.building.name?row.building.name:'N/A' }}
+        </span>
+        <div *ngIf="row.action == 'insert'">
+          <select formControlName="building" [value]="row.building.id" (change)="changeBuilding($event.target.value)" class="w-100 white-select-box">
+            <option *ngFor="let building of buildings" [value]="building.id">{{building.name}}</option>
+          </select>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Level" prop="level.name" [width]="(tableWidth | async)" *ngIf="type == 'lt' || type == 'water'">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action  != 'insert' && row.action != 'update'">
+          {{ row.level.name?row.level.name:'N/A' }}
+        </span>
+        <div *ngIf="row.action  == 'insert' || row.action == 'update'">
+          <select formControlName="level" [value]="row.level.id" (change)="changeLevel($event.target.value)" class="w-100 white-select-box">
+            <option *ngFor="let level of levels" [value]="level.id">{{level.name}}</option>
+          </select>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Location" prop="location.name" [width]="(tableWidth | async)" *ngIf="type == 'lt' || type == 'water'">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action != 'insert' && row.action != 'update'">
+          {{ row.location.name?row.location.name:'N/A' }}
+        </span>
+        <div *ngIf="row.action == 'insert' || row.action == 'update'">
+          <select formControlName="location" (change)="changeLocation($event.target.value)" class="w-100 white-select-box">
+            <option *ngFor="let location of locations" [value]="location.id">{{location.name}}</option>
+          </select>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Meter Type" prop="meterType.name" [width]="(tableWidth | async)" *ngIf="type == 'lt' || type == 'water'">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action != 'insert' && row.action != 'update'">
+          {{ row.meterType.name?row.meterType.name:'N/A' }}
+        </span>
+        <div *ngIf="row.action == 'insert' || row.action == 'update'">
+          <select formControlName="meterType" [value]="row.meterType.id" (change)="changeMeterType($event.target.value)" class="w-100 white-select-box">
+            <option *ngFor="let meterType of meterTypes" [value]="meterType.id">{{meterType.name}}</option>
+          </select>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Loop" prop="loop.name" [width]="(tableWidth | async)" *ngIf="type == 'ht'">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action != 'insert'">
+          {{ row.loop.name?row.loop.name:'N/A' }}
+        </span>
+        <div *ngIf="row.action == 'insert'">
+          <select formControlName="loop" [value]="row.loop.id" (change)="changeLoop($event.target.value)" class="w-100 white-select-box">
+            <option *ngFor="let loop of loops" [value]="loop.id">{{loop.name}}</option>
+          </select>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Substation" prop="substation.name" [width]="(tableWidth | async)" *ngIf="type == 'ht'">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action != 'insert'">
+          {{ row.substation.name?row.substation.name:'N/A' }}
+        </span>
+        <div *ngIf="row.action == 'insert'">
+          <select formControlName="substation" [value]="row.substation.id" class="w-100 white-select-box">
+            <option *ngFor="let substation of substations" [value]="substation.id">{{substation.name}}</option>
+          </select>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Chiller Plant" prop="plant.name" [width]="(tableWidth | async)" *ngIf="type == 'chiller'">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action != 'insert'">
+          {{ row.plant.name?row.plant.name:'N/A' }}
+        </span>
+        <div *ngIf="row.action == 'insert'">
+          <select formControlName="plant" [value]="row.plant.id" (change)="changePlant($event.target.value)" class="w-100 white-select-box">
+            <option *ngFor="let plant of plants" [value]="plant.id">{{plant.name}}</option>
+          </select>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Equipment Type" prop="equipmentType.name" [width]="(tableWidth | async)" *ngIf="type == 'chiller'">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action  != 'insert' && row.action != 'update'">
+          {{ row.equipmentType.name?row.equipmentType.name:'N/A' }}
+        </span>
+        <div *ngIf="row.action  == 'insert' || row.action == 'update'">
+          <select formControlName="equipmentType" [value]="row.equipmentType.id" (change)="changeEquipmentType($event.target.value)" class="w-100 white-select-box">
+            <option *ngFor="let equipmentType of equipmentTypes" [value]="equipmentType.id">{{equipmentType.name}}</option>
+          </select>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Meter Name" prop="meter.name" [width]="(tableWidth | async)">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action  != 'insert' && row.action != 'update'">
+          {{ row.meter.name?row.meter.name:'N/A' }}
+        </span>
+        <div *ngIf="row.action  == 'insert' || row.action == 'update'">
+          <input type="text" placeholder="Meter Name" formControlName="meterName"  class="form-control search-box">
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="OPC Tag" prop="opcTag.name" [width]="2 * (tableWidth | async)">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action  != 'insert' && row.action != 'update'">
+          {{ row.opcTag.name?row.opcTag.name:'N/A' }}
+        </span>
+        <div *ngIf="row.action  == 'insert' || row.action == 'update'">
+          <input type="text" placeholder="OPC Tag" formControlName="opcTag" class="form-control search-box">
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Relationship" prop="relationship.name" [width]="(tableWidth | async)" *ngIf="type == 'lt' || type == 'water'">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action  != 'insert' && row.action != 'update'">
+          {{ row.relationship.name?row.relationship.name:'N/A' }}
+        </span>
+        <div *ngIf="row.action  == 'insert' || row.action == 'update'">
+          <input type="text" placeholder="Meter Relationship" formControlName="relationShip" class="form-control search-box">
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Action" [width]="(tableWidth | async)">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <div *ngIf="row.action  != 'insert' && row.action != 'update'" class="btn-group w-100" role="group" aria-label="Actions">
+          <button [disabled]="isEditEnabled" type="button" (click)="editRowAction(row)" class="btn btn-primary btn-green btn-sm form-control search-box">Edit</button>
+          <button type="button" (click)="deleteRow(row)" [disabled]="isEditEnabled" class="btn btn-primary btn-red btn-sm form-control search-box">Delete</button>
+        </div>
+        <div class="btn-group w-100" role="group" aria-label="Actions" *ngIf="row.action  == 'insert' || row.action == 'update'">
+          <button type="button" [disabled]="configurationForm.invalid" (click)="onSaveButtonClicked(row)" class="btn btn-primary btn-sm btn-green form-control search-box">Save</button>
+          <button type="button" (click)="cancelEditInsertAction(row)" class="btn btn-primary btn-sm btn-red form-control search-box">Cancel</button>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+  <div class="d-flex justify-content-end mt-3  mb-3">
+    <button (click)="addNewRow($event)" [disabled]="isEditEnabled" type="button" class="d-inline-block clickable  btn-sm btn btn-primary mr-2 ml-2 float-left">
+      <fa-icon [icon]="plusIcon"></fa-icon> Add New {{buttonText}}
+    </button>
+  </div>
+</form>
+<div *ngIf="isLoading" class="loading-area">
+  <img alt="loader" class="loading-icon" src="assets/img/loader.svg" />
+</div>

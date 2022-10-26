@@ -1,0 +1,259 @@
+<div class="card main-card-height">
+  <div class="card-header p-0">
+    <span class="d-none d-xl-block  pl-3 pt-3 pb-3 font-secondary">
+      <span>Alert Dashboard</span>
+      <span class="tab-primary float-right font-primary" (click)="setTabIndex(3)"
+        [ngClass]="{'active': tabIndex == 3}">Chiller System</span>
+      <span class="tab-primary float-right font-primary" (click)="setTabIndex(4)"
+        [ngClass]="{'active': tabIndex == 4}">Water MR</span>
+      <span class="tab-primary float-right font-primary" (click)="setTabIndex(2)"
+        [ngClass]="{'active': tabIndex == 2}">Water</span>
+      <span class="tab-primary float-right font-primary" (click)="setTabIndex(1)"
+        [ngClass]="{'active': tabIndex == 1}">Electrical - HT</span>
+      <span class="tab-primary float-right font-primary" (click)="setTabIndex(0)"
+        [ngClass]="{'active': tabIndex == 0}">Electrical - LT</span>
+    </span>
+    <div class="d-xl-none pl-3 pt-3 pb-3 font-secondary">
+      <span>Alert Dashboard</span>
+      <select class="form-control-sm styled-select-box float-right mr-3 mb-3"
+        (change)="setTabIndex($event.target.value)" [(ngModel)]="tabIndex">
+        <option value="0">Electrical LT</option>
+        <option value="1">Electrical HT</option>
+        <option value="2">Water</option>
+        <option value="4">Water MR</option>
+        <option value="3">Chiller System</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Electrical LT Tab -->
+  <div *ngIf="tabIndex==0" class="card-body card-scroll">
+    <div class="tab-button-content mb-3">
+      <div class="btn-group button-group-custom" role="group">
+        <button class="btn btn-primary" [ngClass]="{'active': pageIndex == 0}" (click)="setPage(0)">Summary</button>
+        <button class="btn btn-primary" [ngClass]="{'active': pageIndex == 1}" (click)="setPage(1)">Configuration</button>
+      </div>
+    </div>
+    <section *ngIf="pageIndex == 0">
+      <app-form-container fieldName="Filtration">
+        <div class="row">
+          <div class="pl-3 pr-3">
+            <app-input-field label="Date Range">
+              <date-range-picker [maxDate]="today" position="bottom-left" [(dateRange)]="ltDateRange" (dateRangeChange)="getLTSummaryData()"></date-range-picker>
+            </app-input-field>
+          </div>
+          <app-alert-summary-filter [(filterFields)]="summaryFilterdFields" [dataSource]="elecLtSummaryDataSource" (onFilter)="onDataFiltered($event)" class="col-12 col-sm-6 col-md-6 col-lg-9 col-xl-10" type='lt'>
+          </app-alert-summary-filter>
+        </div>
+      </app-form-container>
+      <app-data-table [isLoading]="isSummaryLoading" [clickable]="true" (onActionClicked)="tableActionOnClicked($event)" (onRowClicked)="onRowClicked($event)" class="m-2" [rows]="summaryFilteredData" [columns]="alertsDataSource.ltColumns"></app-data-table>
+      <div *ngIf="!isSummaryLoading" class="d-flex justify-content-end mt-3  mb-3">
+        <button type="button"
+          (click)="exportAlerts(serviceTypes.ELECTRICAL)"
+          class="d-inline-block clickable  btn-sm btn btn-primary mr-2 ml-2 float-left">Export</button>
+        <button type="button" class="d-inline-block clickable  btn-sm btn btn-primary mr-2 ml-2 float-left"
+          (click)="acknowledgeAll()">Acknowledge All</button>
+      </div>
+    </section>
+    <section *ngIf="pageIndex == 1">
+      <app-form-container fieldName="Filtration">
+        <div class="row">
+          <app-alert-summary-filter [dataSource]="elecLtConfigurationDataSource" tabType="configs" (onFilter)="onConfigurationFiltered($event)" class="col-12 col-sm-6 col-md-6 col-lg-9 col-xl-10" type='lt'></app-alert-summary-filter>
+        </div>
+      </app-form-container>
+      <app-alert-configuration-table [isLoading]="isConfigurationLoading" (selectionChange)="configSelectionChange($event)" (changeActive)="changeActive($event)" [dataSource]="ltConfigurationFilteredData"></app-alert-configuration-table>
+    </section>
+  </div>
+  <!-- End of Electrical LT Tab -->
+
+  <!-- Electrical HT Tab -->
+  <div *ngIf="tabIndex==1" class="card-body card-scroll">
+    <div class="tab-button-content mb-3">
+      <div class="btn-group button-group-custom" role="group">
+        <button class="btn btn-primary" [ngClass]="{'active': pageIndex == 0}" (click)="setPage(0)">Summary</button>
+        <button class="btn btn-primary" [ngClass]="{'active': pageIndex == 1}"
+          (click)="setPage(1)">Configuration</button>
+      </div>
+    </div>
+    <section *ngIf="pageIndex == 0">
+      <app-form-container fieldName="Filtration">
+        <div class="row">
+          <div class="pl-3 pr-3">
+            <app-input-field label="Date Range">
+              <date-range-picker [maxDate]="today" position="bottom-left" [(dateRange)]="htDateRange" (dateRangeChange)="getHTSummaryData()"></date-range-picker>
+            </app-input-field>
+          </div>
+          <app-alert-summary-filter [(filterFields)]="summaryFilterdFields" [dataSource]="elecHtSummaryDataSource" (onFilter)="onDataFiltered($event)" class="col-12 col-sm-6 col-md-6 col-lg-9 col-xl-10" type='ht'>
+          </app-alert-summary-filter>
+        </div>
+      </app-form-container>
+      <app-data-table [isLoading]="isSummaryLoading" [clickable]="true" (onActionClicked)="tableActionOnClicked($event)" (onRowClicked)="onRowClicked($event)" class="m-2" [rows]="summaryFilteredData" [columns]="alertsDataSource.htColumns"></app-data-table>
+      <div *ngIf="!isSummaryLoading" class="d-flex justify-content-end mt-3  mb-3">
+        <button type="button"
+          (click)="exportAlerts(serviceTypes.HT_ELECTRICAL)" 
+          class="d-inline-block clickable  btn-sm btn btn-primary mr-2 ml-2 float-left">Export</button>
+        <button type="button" class="d-inline-block clickable  btn-sm btn btn-primary mr-2 ml-2 float-left"
+          (click)="acknowledgeAll()">Acknowledge All</button>
+      </div>
+    </section>
+    <section *ngIf="pageIndex == 1">
+      <app-form-container fieldName="Filtration">
+        <div class="row">
+          <app-alert-summary-filter [(filterFields)]="summaryFilterdFields" [dataSource]="elecHtConfigurationDataSource" tabType="configs" (onFilter)="onConfigurationFiltered($event)" class="col-12 col-sm-6 col-md-6 col-lg-9 col-xl-10" type='ht'>
+          </app-alert-summary-filter>
+        </div>
+      </app-form-container>
+      <app-alert-configuration-table [isLoading]="isConfigurationLoading" (selectionChange)="configSelectionChange($event)" (changeActive)="changeActive($event)" [dataSource]="htConfigurationFilteredData"></app-alert-configuration-table>
+    </section>
+  </div>
+  <!-- End of Electrical HT Tab -->
+
+  <!-- Water Tab -->
+  <div *ngIf="tabIndex==2" class="card-body card-scroll">
+    <div class="tab-button-content mb-3">
+      <div class="btn-group button-group-custom" role="group">
+        <button class="btn btn-primary" [ngClass]="{'active': pageIndex == 0}" (click)="setPage(0)">Summary</button>
+        <button class="btn btn-primary" [ngClass]="{'active': pageIndex == 1}"
+          (click)="setPage(1)">Configuration</button>
+      </div>
+    </div>
+    <section *ngIf="pageIndex == 0">
+      <app-form-container fieldName="Filtration">
+        <div class="row">
+          <div class="pl-3 pr-3">
+            <app-input-field label="Date Range">
+              <date-range-picker [maxDate]="today" position="bottom-left" [(dateRange)]="waterDateRange" (dateRangeChange)="getWaterSummaryData()"></date-range-picker>
+            </app-input-field>
+          </div>
+          <app-alert-summary-filter [(filterFields)]="summaryFilterdFields" [dataSource]="waterSummaryDataSource" (onFilter)="onDataFiltered($event)" class="col-12 col-sm-6 col-md-6 col-lg-9 col-xl-10" type='water'>
+          </app-alert-summary-filter>
+        </div>
+      </app-form-container>
+      <app-data-table [isLoading]="isSummaryLoading" [clickable]="true" (onActionClicked)="tableActionOnClicked($event)" (onRowClicked)="onRowClicked($event)" class="m-2" [rows]="summaryFilteredData" [columns]="alertsDataSource.ltColumns"></app-data-table>
+      <div *ngIf="!isSummaryLoading" class="d-flex justify-content-end mt-3  mb-3">
+        <button type="button"
+        (click)="exportAlerts(serviceTypes.WATER)"
+          class="d-inline-block clickable  btn-sm btn btn-primary mr-2 ml-2 float-left">Export</button>
+        <button type="button" class="d-inline-block clickable  btn-sm btn btn-primary mr-2 ml-2 float-left"
+          (click)="acknowledgeAll()">Acknowledge All</button>
+      </div>
+    </section>
+    <section *ngIf="pageIndex == 1">
+      <app-form-container fieldName="Filtration">
+        <div class="row">
+          <app-alert-summary-filter [(filterFields)]="summaryFilterdFields" [dataSource]="waterConfigurationDataSource" tabType="config" (onFilter)="onConfigurationFiltered($event)" class="col-12 col-sm-6 col-md-6 col-lg-9 col-xl-10" type='water'>
+          </app-alert-summary-filter>
+        </div>
+      </app-form-container>
+      <app-alert-configuration-table [isLoading]="isConfigurationLoading" (selectionChange)="configSelectionChange($event)" (changeActive)="changeActive($event)" [dataSource]="waterConfigurationFilteredData"></app-alert-configuration-table>
+    </section>
+  </div>
+  <!-- End of Water Tab -->
+
+  <!-- Leak Detection Tab -->
+  <div *ngIf="tabIndex == 4" class="card-body card-scroll">
+    <div class="tab-button-content mb-3">
+      <div class="btn-group button-group-custom" role="group">
+        <button class="btn btn-primary" [ngClass]="{'active': pageIndex == 0}" (click)="setPage(0)">Summary</button>
+        <button class="btn btn-primary" [ngClass]="{'active': pageIndex == 1}" (click)="setPage(1)">Configuration</button>
+      </div>
+    </div>
+    <section *ngIf="pageIndex == 0">
+      <app-form-container fieldName="Filtration">
+        <div class="row">
+          <div class="pl-3 pr-3">
+            <app-input-field label="Date Range">
+              <date-range-picker
+                [maxDate]="today"
+                position="bottom-left"
+                [(dateRange)]="ldWaterDateRange"
+                (dateRangeChange)="getLDWaterSummeryData()">
+              </date-range-picker>
+            </app-input-field>
+          </div>
+          <app-input-field label="Leaks Between">
+            <app-combo-box
+              dark="false"
+              [dataSource]="[ {id: 1, name: 'Without sub meters between main ring meters'}, {id: 2, name: 'With sub meters between main ring meters'} ]"
+              (selectedChange)="onScenarioChangeSummary($event.value)">
+            </app-combo-box>
+          </app-input-field>
+        </div>
+      </app-form-container>
+      <app-data-table
+        [isLoading]="isSummaryLoading"
+        [clickable]="true"
+        (onActionClicked)="ldAlertAcknowledge($event)"
+        (onRowClicked)="openInfo($event)"
+        [rows]="summaryFilteredData"
+        [columns]="[{name:'Identified Time', key: 'time'}, {name:'Meters', key: 'meters'}, {name:'Scenario', key: 'scenario'}, {name:'Max Error', key: 'maxError'}, {name:'Actual Error', key: 'error'}, {name:'Status', key: 'status'}, {name:'Action', key: 'buttonGroupAction'}]">
+      </app-data-table>
+      <div *ngIf="!isSummaryLoading" class="d-flex justify-content-end mt-3  mb-3">
+        <button type="button" (click)="exportLDAlerts()" class="d-inline-block clickable  btn-sm btn btn-primary mr-2 ml-2 float-left">Export</button>
+  <button type="button" (click)="acknowledgeAllLDAlerts()" [disabled]="isAcknowledgedAll" class="d-inline-block clickable  btn-sm btn btn-primary mr-2 ml-2 float-left">Acknowledge All</button>
+        <!-- <button type="button" class="d-inline-block clickable  btn-sm btn btn-primary mr-2 ml-2 float-left" (click)="acknowledgeAll()">Acknowledge -->
+          <!-- All</button> -->
+      </div>
+    </section>
+    <section *ngIf="pageIndex == 1">
+      <app-form-container fieldName="Filtration">
+        <div class="row ml-3">
+          <app-input-field label="Leaks Between">
+            <app-combo-box
+              dark="false"
+              [dataSource]="[ {id: 1, name: 'Without sub meters between main ring meters'}, {id: 2, name: 'With sub meters between main ring meters'} ]"
+              (selectedChange)="onScenarioChangeConfiguration($event.value)">
+            </app-combo-box>
+          </app-input-field>
+        </div>
+      </app-form-container>
+      <app-ld-configuration
+        [rows]="ldConfigurationFilteredData"
+        [isLoading]="isConfigurationLoading">
+      </app-ld-configuration>
+    </section>
+  </div>
+
+  <!-- Chiller Tab -->
+  <div *ngIf="tabIndex==3" class="card-body card-scroll">
+    <div class="tab-button-content mb-3">
+      <div class="btn-group button-group-custom" role="group">
+        <button class="btn btn-primary" [ngClass]="{'active': pageIndex == 0}" (click)="setPage(0)">Summary</button>
+        <button class="btn btn-primary" [ngClass]="{'active': pageIndex == 1}"
+          (click)="setPage(1)">Configuration</button>
+      </div>
+    </div>
+    <section *ngIf="pageIndex == 0">
+      <app-form-container fieldName="Filtration">
+        <div class="row">
+          <div class="pl-3 pr-3">
+            <app-input-field label="Date Range">
+              <date-range-picker [maxDate]="today" position="bottom-left" [(dateRange)]="chillerDateRange" (dateRangeChange)="getChillerData()"></date-range-picker>
+            </app-input-field>
+          </div>
+          <app-alert-summary-filter [(filterFields)]="summaryFilterdFields" [dataSource]="chillerSummaryDataSource" (onFilter)="onDataFiltered($event)" class="col-12 col-sm-6 col-md-6 col-lg-9 col-xl-10" type='chiller'>
+          </app-alert-summary-filter>
+        </div>
+      </app-form-container>
+      <app-data-table [isLoading]="isSummaryLoading"  [clickable]="true" (onActionClicked)="tableActionOnClicked($event)" (onRowClicked)="onRowClicked($event)" class="m-2" [rows]="summaryFilteredData" [columns]="alertsDataSource.chillerColumns">
+      </app-data-table>
+      <div *ngIf="!isSummaryLoading" class="d-flex justify-content-end mt-3  mb-3">
+        <button type="button"
+          (click)="exportAlerts(serviceTypes.CHILLER)"
+          class="d-inline-block clickable  btn-sm btn btn-primary mr-2 ml-2 float-left">Export</button>
+        <button type="button" class="d-inline-block clickable  btn-sm btn btn-primary mr-2 ml-2 float-left" (click)="acknowledgeAll()">Acknowledge
+          All</button>
+      </div>
+    </section>
+    <section *ngIf="pageIndex == 1">
+      <app-form-container fieldName="Filtration">
+        <div class="row">
+          <app-alert-summary-filter [(filterFields)]="summaryFilterdFields" [dataSource]="chillerConfigurationDataSource" tabType="config" (onFilter)="onConfigurationFiltered($event)" class="col-12 col-sm-6 col-md-6 col-lg-9 col-xl-10" type='chiller'>
+          </app-alert-summary-filter>
+        </div>
+      </app-form-container>
+      <app-alert-configuration-table [isLoading]="isConfigurationLoading" (selectionChange)="configSelectionChange($event)" (changeActive)="changeActive($event)" [dataSource]="chillerConfigurationFilteredData"></app-alert-configuration-table>
+    </section>
+  </div>
+  <!-- End of Chiller Tab -->
+</div>

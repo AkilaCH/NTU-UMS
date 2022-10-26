@@ -1,0 +1,25 @@
+.data-row {
+    border-bottom: 1px solid #70707038;
+}
+
+.data-cell {
+    border-left: 1px solid #70707038;
+    font-weight: normal;
+}
+
+td {
+    padding: 5px 0px 5px 10px;
+    font-weight: bold;
+}
+
+.field-container {
+    margin-left: 20px;
+}
+
+.form-full-width {
+    width: 100%;
+}
+
+.error {
+    border-color: red;
+}

@@ -1,0 +1,77 @@
+<div class="card main-card-height">
+    <div class="card-header p-0">
+        <span class="d-none d-xl-block  pl-3 pt-3 pb-3 font-secondary">
+            <span>Meter Configuration</span>
+            <span class="tab-primary float-right font-primary" (click)="setTabIndex(3)"
+                [ngClass]="{'active': tabIndex == 3}">Chiller System</span>
+            <span class="tab-primary float-right font-primary" (click)="setTabIndex(2)"
+                [ngClass]="{'active': tabIndex == 2}">Water</span>
+            <span class="tab-primary float-right font-primary" (click)="setTabIndex(1)"
+                [ngClass]="{'active': tabIndex == 1}">Electrical - HT</span>
+            <span class="tab-primary float-right font-primary" (click)="setTabIndex(0)"
+                [ngClass]="{'active': tabIndex == 0}">Electrical - LT</span>
+        </span>
+        <div class="d-xl-none pl-3 pt-3 pb-3 font-secondary">
+            <span>Alert Dashboard</span>
+            <select class="form-control-sm styled-select-box float-right mr-3 mb-3"
+                (change)="setTabIndex($event.target.value)" [(ngModel)]="tabIndex">
+                <option value="0">Electrical LT</option>
+                <option value="1">Electrical HT</option>
+                <option value="2">Water</option>
+                <option value="3">Chiller System</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Electrical LT Tab -->
+    <div *ngIf="tabIndex==0" class="card-body card-scroll">
+        <app-form-container fieldName="Filtration">
+            <div class="d-flex justify-content-between mt-3  mb-3">
+                <app-alert-summary-filter *ngIf="ltDataSource" [disabled]="disableFiltration" [filterData]="false" [dataSource]="ltDataSource" [showActive]="false" (selectedBuilding)="onChangeBuilding($event)" (selectedBuildingGroup)="onChangeBuildingGroup($event)" (onFilter)="onDataFiltered($event)" class="col-12 col-sm-6 col-md-6 col-lg-9 col-xl-10 pl-0" tabType="configs" type='lt'></app-alert-summary-filter>
+              </div>
+        </app-form-container>
+        <div class="pt-3">
+            <app-configuration-table [isLoading]="isLoading" (onEditOrInsert)="onEditOrInsert($event)" [rows]="filteredData" type='lt' class="pt-3" (onSave)="onSaveNewMeter($event)" (onUpdate)="onUpdateMeter($event)" (onDelete)="onDeleteMeter($event)"></app-configuration-table>
+        </div>
+    </div>
+    <!-- End of Electrical LT Tab -->
+
+    <!-- Electrical HT Tab -->
+    <div *ngIf="tabIndex==1" class="card-body card-scroll">
+        <app-form-container fieldName="Filtration">
+            <div class="d-flex justify-content-between mt-3  mb-3">
+                <app-alert-summary-filter *ngIf="htDataSource" [filterData]="false" [dataSource]="htDataSource" [showActive]="false" (selectedLoop)="onChangeLoop($event)" (onFilter)="onDataFiltered($event)" class="col-12 col-sm-6 col-md-6 col-lg-9 col-xl-10" tabType="configs" type='ht'></app-alert-summary-filter>
+            </div>
+        </app-form-container>
+        <div class="pt-3">
+            <app-configuration-table [isLoading]="isLoading" [rows]="filteredData" type='ht' (onSave)="onSaveNewMeter($event)" (onUpdate)="onUpdateMeter($event)" (onDelete)="onDeleteMeter($event)"></app-configuration-table>
+        </div>
+    </div>
+    <!-- End of Electrical HT Tab -->
+
+    <!-- Water Tab -->
+    <div *ngIf="tabIndex==2" class="card-body card-scroll">
+        <app-form-container fieldName="Filtration">
+            <div class="d-flex justify-content-between mt-3  mb-3">
+                <app-alert-summary-filter *ngIf="waterDataSource" [filterData]="false" [dataSource]="waterDataSource" [showActive]="false" (selectedBuilding)="onChangeBuilding($event)" (selectedBuildingGroup)="onChangeBuildingGroup($event)" (onFilter)="onDataFiltered($event)" class="col-12 col-sm-6 col-md-6 col-lg-9 col-xl-10" tabType="configs" type='water'></app-alert-summary-filter>
+            </div>
+        </app-form-container>
+        <div class="pt-3">
+            <app-configuration-table [isLoading]="isLoading" [rows]="filteredData" type='water' (onSave)="onSaveNewMeter($event)" (onUpdate)="onUpdateMeter($event)" (onDelete)="onDeleteMeter($event)"></app-configuration-table>
+        </div>
+    </div>
+    <!-- End of Water Tab -->
+
+    <!-- Chiller Tab -->
+    <div *ngIf="tabIndex==3" class="card-body card-scroll">
+        <app-form-container fieldName="Filtration">
+            <div class="d-flex justify-content-between mt-3  mb-3">
+                <app-alert-summary-filter *ngIf="chillerDataSource" [filterData]="false" [dataSource]="chillerDataSource" [showActive]="false" (selectedPlant)="onChangePlant($event)" (onFilter)="onDataFiltered($event)" class="col-12 col-sm-6 col-md-6 col-lg-9 col-xl-10" tabType="configs" type='chiller'></app-alert-summary-filter>
+            </div>
+        </app-form-container>
+        <div class="pt-3">
+            <app-configuration-table [isLoading]="isLoading" [rows]="filteredData" type='chiller' (onSave)="onSaveNewMeter($event)" (onUpdate)="onUpdateMeter($event)" (onDelete)="onDeleteMeter($event)"></app-configuration-table>
+        </div>
+    </div>
+    <!-- End of Chiller Tab -->
+</div>

@@ -1,0 +1,134 @@
+<div *ngIf="isLoading" class="loading-area">
+  <img  alt="loader" class="loading-icon" src="assets/img/loader.svg" />
+</div>
+<div *ngIf="!isLoading" class="d-flex justify-content-between mt-3  mb-3">
+    <div class="form-group field-min-width">
+      <label for="levelType">Location Category</label><br>
+      <select class="white-select-box" [(ngModel)]="selectedLocation" (change)="changeLocationType($event.target.value)">
+        <option value="1">Site</option>
+        <option value="2">Building Group</option>
+        <option value="3">Building</option>
+      </select>
+    </div>
+    <div class="form-group field-min-width">
+      <label for="search">Search</label><br>
+      <input type="text" id="search" [(ngModel)]="searchTerm" class="form-control search-box" placeholder="Search...">
+    </div>
+  </div>
+  <form *ngIf="!isLoading" [formGroup]="scheduleForm">
+    <ngx-datatable
+    #table
+    class="dark"
+    [rows]="searchByTermAction(rows)"
+    [sortType]="SortType.multi"
+    [headerHeight]="40"
+    [footerHeight]="40"
+    [columnMode]="ColumnMode.standard"
+    rowHeight="auto"
+    [limit]="8"
+    [loadingIndicator]="true"
+    [reorderable]="true"
+    rowHeight="auto"
+  >
+    <ngx-datatable-column name="Schedule Name" [width]="(tableWidth | async)">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action  != 'insert' && row.action != 'update'">
+          {{ row.scheduleName }}
+        </span>
+        <div *ngIf="row.action  == 'insert' || row.action == 'update'">
+          <input formControlName="scheduleName" (change)="changeScheduleName(row, $event)" type="text" class="form-control search-box" placeholder="Schedule Name">
+        </div>
+      </ng-template>
+  
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Report Type" [width]="(tableWidth | async)">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action  != 'insert' && row.action != 'update'">
+          {{ row.reportType }}
+        </span>
+        <div *ngIf="row.action  == 'insert' || row.action == 'update'">
+          <select formControlName="reportType" (click)="changeReportType(row, $event)" class="w-100 white-select-box">
+            <option value="Daily">Daily</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Yearly">Yearly</option>
+          </select>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Site" [width]="(tableWidth | async)">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action  != 'insert' && row.action != 'update'">
+          {{ row.site.name }}
+        </span>
+        <div *ngIf="row.action  == 'insert' || row.action == 'update'">
+          <select formControlName="site" class="w-100 white-select-box" (change)="changeSite(row, $event.target.value)">
+            <option *ngFor="let site of sites" [value]="site.siteID">{{site.siteName}}</option>
+          </select>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Building Group" *ngIf="selectedLocation == 2 || selectedLocation == 3" [width]="(tableWidth | async)">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action  != 'insert' && row.action != 'update'">
+          {{ row.buildingGroup.name }}
+        </span>
+        <div *ngIf="row.action  == 'insert' || row.action == 'update'">
+          <select formControlName="buildingGroup" class="w-100 white-select-box" (change)="changeBuildingGroup(row, $event.target.value)">
+            <option *ngFor="let buildingGroup of buildingGroups" [value]="buildingGroup.buildingGroupID">{{buildingGroup.description}}</option>
+          </select>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Building" *ngIf="selectedLocation == 3" [width]="(tableWidth | async)">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action  != 'insert' && row.action != 'update'">
+          {{ row.building.name }}
+        </span>
+        <div *ngIf="row.action  == 'insert' || row.action == 'update'">
+          <select formControlName="building" class="w-100 white-select-box" (change)="changeBuilding(row, $event.target.value)">
+            <option *ngFor="let building of buildings" [value]="building.buildingID">{{building.buildingName}}</option>
+          </select>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Starting Date" [width]="(tableWidth | async)">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action  != 'insert' && row.action != 'update'">
+          {{ row.startDate  | date : 'yyyy-MM-dd'}}
+        </span>
+        <div *ngIf="row.action  == 'insert' || row.action == 'update'">
+          <input formControlName="startDate" (change)="changeStartingTime(row, $event)" type="date" min="{{today | date : 'yyyy-MM-dd'}}" class="form-control search-box">
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Status" [width]="(tableWidth | async)">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.action  != 'insert' && row.action != 'update'">
+          {{ row.status }}
+        </span>
+        <div *ngIf="row.action  == 'insert' || row.action == 'update'">
+          <select formControlName="status" (click)="changeStatus(row, $event)" class="w-100 white-select-box">
+            <option value="ACTIVE" [selected]="row.status===null?true:false">ACTIVE</option>
+            <option value="INACTIVE">INACTIVE</option>
+          </select>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Actions" [width]="(tableWidth | async)">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <div  *ngIf="row.action  != 'insert' && row.action != 'update'" class="btn-group w-100" role="group" aria-label="Actions">
+          <button  type="button" [disabled]="disabledAddEdit" (click)="editRowAction(row)" [ngClass]="{'btn-green': !disabledAddEdit}" class="btn btn-primary btn-sm form-control search-box">Edit</button>
+          <button type="button" [disabled]="disabledAddEdit" (click)="deleteRow(row)" [ngClass]="{'btn-red': !disabledAddEdit}" class="btn btn-primary btn-sm form-control search-box">Delete</button>
+        </div>
+        <div class="btn-group w-100" role="group" aria-label="Actions" *ngIf="row.action  == 'insert' || row.action == 'update'">
+          <button type="button" [disabled]="scheduleForm.invalid" (click)="saveRow(row)" [ngClass]="{'btn-green': !scheduleForm.invalid}" class="btn btn-primary btn-sm form-control search-box">Save</button>
+          <button type="button" (click)="cancelEditInsertAction(row)" class="btn btn-primary btn-sm btn-red form-control search-box">Cancel</button>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+  </form>
+  <div *ngIf="!isLoading" class="d-flex justify-content-end mt-3  mb-3">
+    <button (click)="addNewRow()" [disabled]="disabledAddEdit" type="button" class="d-inline-block clickable  btn-sm btn btn-primary mr-2 ml-2 float-left"><fa-icon [icon]="plusIcon"></fa-icon> Add Schedule</button>
+  </div>
+  

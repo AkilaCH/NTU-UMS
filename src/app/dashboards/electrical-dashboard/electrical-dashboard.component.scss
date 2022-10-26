@@ -1,0 +1,28 @@
+.align-verticle-middle{
+  margin-top: 5px;
+}
+
+.card-header-max-height {
+  max-height: 54px;
+}
+
+.dark .mat-raised-button {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  box-shadow: none;
+}
+.input-date{
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  display: flex;
+}
+
+#meter-tree{
+  svg{
+    g{
+      transform: translate(5px,0) scale(.7) !important;
+    }
+  }
+}

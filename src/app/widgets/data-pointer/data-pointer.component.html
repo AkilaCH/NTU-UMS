@@ -1,0 +1,13 @@
+<div class="pointer-container pointer-min-height p-0 d-flex flex-1" >
+    <div class="text-left labeling" [innerHTML]="description"></div>
+    <app-chart-loader [isDone] = "isDone">
+        <div class="img-container position-relative pointer-min-height">
+            <!-- <img class="d-inline-block position-absolute h-100 pointer-img d-inline-block mob-res" src="assets/img/data-pointer.svg" alt=""> -->
+            <!-- <span class="pointer-text position-absolute d-inline-block">{{ pointerText }}</span> -->
+            <!-- <span class="pointer-text d-inline-block value-detail" [style.color] = "this.color">{{ pointerText===null || pointerText===undefined? 'N/A': pointerText | number: '.2'}}{{suffix}} <span class="pointer-unit d-inline-block" [innerHTML]="unit"></span> </span> -->
+            <span class="pointer-text  d-inline-block" [style.color] = "this.color" >{{ pointerText}}{{suffix}} <span class="pointer-unit d-inline-block" [style.color] = "this.color" [innerHTML]="unit"></span></span>
+    
+        </div>
+    </app-chart-loader>
+    <img class="image" src="{{this.image}}" alt="">
+</div>

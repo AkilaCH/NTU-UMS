@@ -1,0 +1,21 @@
+<div class="multiselect">
+    <label class="label-text"><ng-content></ng-content></label>
+    
+    <div class="selectBox" (click)="showCheckboxes()">
+      <select>
+        <option>{{selectedNames}}</option>
+      </select>
+      <div class="overSelect"></div>
+  
+      <div class="checkboxes" [class.expanded]="expanded">
+        <label>
+          <input #checks type="checkbox" (change)="selectAll($event)">
+          All
+        </label>
+        <label *ngFor="let option of options">
+          <input #checks type="checkbox" (change)="select(option.id)">
+          {{option.name}}
+        </label>
+      </div>
+    </div>
+</div>

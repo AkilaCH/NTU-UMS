@@ -1,0 +1,50 @@
+.content {
+
+    .header-content {
+        display: flex;
+        align-items: center;
+
+        .header-title {
+            margin-left: 10px;
+        }
+    }
+
+    .close-button {
+        transition: opacity .2s ease;
+        opacity: .5;
+        outline: 0;
+        border: none;
+        background: 0 0;
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+        vertical-align: top;
+    }
+
+    .close-button:hover {
+        opacity: 1;
+    }
+
+    .body-content {
+        padding: 10px 20px;
+
+        .table-buttons {
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .loading-area {
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .loading-icon {
+                width: 75px;
+                height: auto;
+            }
+        }
+    }
+}

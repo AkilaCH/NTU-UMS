@@ -1,0 +1,35 @@
+table {
+    border-radius: 3px;
+    overflow: hidden;
+
+    thead {
+        background-color: #252323;
+
+        tr {
+            line-height: 2rem;
+
+            td {
+                font-weight: 500;
+            }
+        }
+    }
+
+    td {
+        height: 20px;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #346488;
+    }
+
+    tfoot {
+        background-color: #252323;
+
+        tr {
+            line-height: 2rem;
+
+            td {
+                color: #999;
+                font-style: italic;
+            }
+        }
+    }
+}

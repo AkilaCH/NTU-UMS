@@ -1,0 +1,14 @@
+{
+    "api_host": "http://103.60.61.250:8010",
+    "demo": false,
+    "demoDate": "2020-02-04T00:00:00",
+    "defaultColorCode": "#b2beb5",
+    "attributes": {
+      "COLOR_CODE": "color_code"
+    },
+    "maintenences": {
+      "enabled": false,
+      "date": "Friday, 3rd Of June"
+    },
+    "version": "2.35.168"
+}

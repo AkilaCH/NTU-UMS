@@ -1,0 +1,37 @@
+<app-badge-icon (onClick)="iconClicked($event)" [icon]="bellIcon" [badgeText]="badgeText"></app-badge-icon>
+<div #panel (onClick)="clickout($event)" *ngIf="showPanel" class="notification-panel arrow-top">
+    <!-- <div class="d-flex justify-content-between w-100">
+        <p class="panel-header">Notifications</p> <p (click)="clearAllNotifications()" class="float-right mt-1 clear-text">Clear All</p>
+        
+    </div>
+    <div class="panel-content">
+        <div *ngFor="let item of notifications" [ngClass]="{'notification-item': !isViewedNotification(item), 'notification-item-notviewed': isViewedNotification(item)}" (mouseenter)="removeFromCount(item)">
+            <b class="text-warning">Abnormal usage!</b>, detected value is {{item.SpikeValue}} on {{item.MeterName}}.<br>
+            <span class="date-time">{{getMomentAgo(item.AlertTimeStamp)}}</span>
+        </div>
+    </div> -->
+
+    <!-- TODO: modify notification panel -->
+    <div class="panel-header">
+        <div class="panel-title">Notifications</div>
+        <div class="clear-button" (click)="clearAllNotifications()">
+            <img src="../../../assets/img/clear.svg" alt="clear">
+        </div>
+    </div>
+    <div class="panel-body">
+        <div *ngFor="let item of notifications" [ngStyle]="{'background-color': !isViewedNotification(item) ? '#293946' : null}" class="notification-card" (mouseenter)="removeFromCount(item)">
+            <div class="notification-card-header">
+                <img [src]="item.Meter2 != '' ? '../../../assets/img/leakDetection.png' : '../../../assets/img/danger.png'" alt="notification-icon" class="notification-icon">
+                <p class="notification-card-title text-warning" *ngIf="item.Meter2 == ''">Abnormal usage!</p>
+                <p class="notification-card-title text-warning" *ngIf="item.Meter2 != ''">Water Leakage!</p>
+            </div>
+            <hr>
+            <div class="notification-card-body">
+                <span *ngIf="item.Meter2 != ''">System has detected a possible water leak between {{item.MeterName}} and {{item.Meter2}} meters.</span>
+                <span *ngIf="item.Meter2 == ''">System has detected an abnormal usage in {{item.MeterName}}</span>
+                <br>
+                <span class="notification-time">{{getMomentAgo(item.AlertTimeStamp)}}</span>
+            </div>
+        </div>
+    </div>
+</div>

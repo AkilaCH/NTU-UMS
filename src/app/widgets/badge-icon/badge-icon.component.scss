@@ -1,0 +1,30 @@
+.badge-icon {
+    position: relative;
+
+    .badge-notify{
+        position: absolute;
+        top: -15px;
+        border: 2px solid #293946;
+    }
+}
+
+.badge-icon:hover {
+    .badge-notify{
+        background-color: rgb(204, 0, 0);
+    }
+
+    .icon-style {
+        color: #cccccc;
+    }
+}
+
+
+.badge-icon:active {
+    .badge-notify{
+        background-color: rgb(139, 0, 0);
+    }
+
+    .icon-style {
+        color: #6b6b6b;
+    }
+}

@@ -1,0 +1,79 @@
+
+@import 'src/scss/_variables.scss';
+
+.pointer-container{
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // border: 2px solid #d5d5d5;
+    border: 1px solid #727272;
+    padding: 10px !important;
+    background-color: rgb(41 57 70);
+    border-color: transparent;
+    // border-radius: 5px;
+    min-height: 158px;
+    height: 100%;
+    padding-top: 20px !important;
+    .value-detail{
+      margin: 20px 0 !important;
+      margin-top: 35px !important;
+    }
+    .image{
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      position: absolute;
+      right: 10px;
+    }
+    .img-container{
+
+      align-items: center;
+      justify-content: center;
+      display: flex;
+        .pointer-text{
+            left: 0;
+            right: 0;
+            margin: auto;
+            text-align: center;
+            top: 28%;
+            font-size: $size-font-pointer;
+            padding-right: 10px;
+            
+        }
+
+        .pointer-unit{
+            left: 0;
+            right: 0;
+            margin: auto;
+            text-align: center;
+            top: 50%;
+            text-align: center;
+            font-size: $size-font-pointer-unit;
+        }
+
+        .pointer-img{
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    }
+}
+.labeling{
+  // margin-top: -20px;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  width: 150%;
+}
+
+@media only screen and (max-width: 600px) {
+  .mob-res {
+    width: 100%;
+  }
+}
+
+.pointer-min-height {
+  // min-height: 200px;
+}
+

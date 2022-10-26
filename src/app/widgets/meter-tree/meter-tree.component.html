@@ -1,0 +1,11 @@
+<div style="position: relative;">
+    <div *ngIf="!noData && !isLoading" id="meter-tree"></div>
+    <!-- <div *ngIf="!noData && !isLoading" id="preview" class="preview"></div> -->
+    <div id="fakeTree" class="d-none"></div>
+
+    <div *ngIf="noData && !isLoading" class="w-100 h-100 text-center middle-text text-muted"><small>No data to display</small></div>
+
+    <div *ngIf="isLoading" class="loading-area">
+        <img  alt="loader" class="loading-icon" src="assets/img/loader.svg" />
+    </div>
+</div>

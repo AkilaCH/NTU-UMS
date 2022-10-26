@@ -1,0 +1,186 @@
+<div class="card main-card-height" id="waterDistribution">
+    <div class="card-header p-0 pl-2 pr-3">
+
+      <div class="d-none d-xl-block">
+        <span class="d-inline-block pl-3 pt-3 pb-3 font-secondary header-title">Water > {{buildingGroupName}} ></span>
+        <span class="d-inline-block pl-3 pt-3 pb-3 font-secondary">
+          <app-combo-box class="select-box-dark" [dataSource]="buildingList" [selected]="selectedBuilding" (selectedChange)="buildingChanged($event)"></app-combo-box>
+        </span>
+        <span class="tab-primary float-right font-primary" (click)="setTabIndex(6)" [ngClass]="{'active': tabIndex == 6}">EUI</span>
+        <span class="tab-primary float-right font-primary" (click)="setTabIndex(2)" [ngClass]="{'active': tabIndex == 2}">Meter Tree</span>
+        <span class="tab-primary float-right font-primary" (click)="setTabIndex(4)" [ngClass]="{'active': tabIndex == 4}">8-Day Profile</span>
+        <span class="tab-primary float-right font-primary" (click)="setTabIndex(1)" [ngClass]="{'active': tabIndex == 1}">Equipment Breakdown</span>
+        <span class="tab-primary float-right font-primary" (click)="setTabIndex(3)" [ngClass]="{'active': tabIndex == 3}">Equipment Distribution</span>
+        <span class="tab-primary float-right font-primary" (click)="setTabIndex(0)" [ngClass]="{'active': tabIndex == 0}">Overview</span>
+      </div>
+
+      <div class="form-group row mb-0 row d-xl-none pr-2">
+        <label class="col-6 col-sm-6 col-form-label">Water Dashboard</label>
+        <div class="col-6 col-sm-6 pl-0 pr-0">
+          <app-combo-box class="select-box-dark" [dataSource]="buildingList" [selected]="selectedBuilding" (selectedChange)="buildingChanged($event)"></app-combo-box>
+          <select (change)="setTabIndex($event.target.value)" [(ngModel)]="tabIndex" class="form-control mt-1 form-control-sm select-box-dark">
+            <option value="0">Overview</option>
+            <option value="3">Equipment Distribution</option>
+            <option value="1">Equipment Breakdown</option>
+            <option value="4">8-Day Profile</option>
+            <option value="2">Meter Tree</option>
+            <option value="6">EUI</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+    <div class="card-body h-100 card-scroll">
+
+      <!-- tab index 0 -->
+      <section *ngIf="tabIndex == 0">
+        <div class="row ow-eq-height">
+          <div class="col-md-4 p-1">
+            <div class="chart-card h-100">
+              <div class="chart-card-header">
+                  <span>Overall Consumption</span>
+                  <date-range-picker [disabled] ="!isDone.overallConsumptioSquareData" *ngIf="_reload" [maxDate]="today" class=" d-block" position="bottom-right" [(dateRange)]="overollConsumptionRange" (dateRangeChange)="overallConsumptionChanged()"></date-range-picker>
+              </div>
+              <div class="chart-card-body custom-card-body">
+                <div class="row h-100">
+                  <!-- <date-range-picker *ngIf="_reload" [maxDate]="today" class="d-xl-none m-3" [(dateRange)]="overollConsumptionRange" (dateRangeChange)="overallConsumptionChanged()"></date-range-picker> -->
+                  <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 custom-view-pointer">
+                    <app-chart-loader [isDone] = "isDone.overollConsumptionData">
+                      <app-data-pointer-none-image [color] = "this.colorMap.water.secondary" [description]="'Total Consumption'" [pointerText]="overollConsumptionData"
+                                        [unit]="'m<sup>3</sup>'" class=""></app-data-pointer-none-image>
+                    </app-chart-loader>
+                  </div>
+                  <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 custom-view-pointer">
+                    <app-chart-loader [isDone] = "isDone.overallConsumptioSquareData">
+                      <app-data-pointer-none-image [color] = "this.colorMap.water.secondary" type="m³" [description]="squareMeterPointerDescription"
+                                        [pointerText]="overallConsumptioSquareData"
+                                        [unit]="'m<sup>3</sup>/m<sup>2</sup>'"></app-data-pointer-none-image>
+                    </app-chart-loader>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8 p-1">
+            <div class="chart-card h-100" id="30MinutConsumption">
+              <div class="chart-card-header">
+                <span class="header-title">30 min Consumption</span>
+                <div class="d-flex align-items-center">
+                  <date-range-picker [disabled] = "!isDone.dailyConsumptionData" *ngIf="_reload" [maxDate]="_maxTodayConsumptionDate" [minDate] = "_minTodayConsumptionDate" class="" (dateRangeChange)="onChangeTodayConsumption()"
+                                      [(dateRange)]="_todayConsumptionDate"
+                                      [isSingleDate]="'true'"
+                                      position="bottom-right"></date-range-picker>
+                  <app-print-preview [className]="'position-gorelative'" [targetHtml] = "'30MinutConsumption'" [title]="'30 min Consumption'"></app-print-preview>
+                </div>
+              </div>
+              <div class="chart-card-body p-3 position-relative">
+                <app-total-comsumption [value] = "dailyConsumptionData.chart.total" [unit] = "'m<sup>3</sup>'" [type] = "'m3'"></app-total-comsumption>
+                <app-chart-loader [isDone] = "isDone.dailyConsumptionData">
+                  <app-trend *ngIf="dailyConsumptionData" [dataSource]="dailyConsumptionData"></app-trend>
+                </app-chart-loader>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row ow-eq-height">
+          <div class="col-md-4 p-1">
+            <div class="chart-card h-100" id="equipmentdistribution">
+              <div class="chart-card-header">
+                  <span class="header-title">Equipment Distribution</span>
+                  <div class="d-flex align-items-center">
+                    <date-range-picker [disabled] = "!isDone.equipDistribution" *ngIf="_reload" [maxDate]="today" class="d-block" position="bottom-right" [(dateRange)]="eqDIstDateRange" (dateRangeChange)="eqDateRangeChange()"></date-range-picker>
+                    
+                    <app-print-preview [className]="'position-gorelative'" [targetHtml] = "'equipmentdistribution'" [title]="'Equipment Distribution'"></app-print-preview>
+                  </div>
+              </div>
+              <div class="chart-card-body p-3  pie-chart-min-height position-relative">
+                <app-chart-loader [isDone] = "isDone.equipDistribution">
+                  <app-pie *ngIf="equipDistribution" [dataSource]="equipDistribution"></app-pie>
+                </app-chart-loader>
+                
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8 p-1">
+            <div class="chart-card h-100" id="consumptionSummary">
+              <div class="chart-card-header">
+                <span class="header-title">Consumption Summary</span>
+                <div role="group" class="d-flex align-items-center" aria-label="Trend Log Modes">
+                        
+                  <div class="chart-card-header" style="margin-right: 10px;">
+                    <span style="margin-right: 5px;">From:</span>
+                    <date-range-picker [disabled] = "!isDone.trendLogData" *ngIf="_reload && !_isMonth && !_isYear"  class="" (dateRangeChange)="onChangeTrendLogByDate(true)" [maxDate] = "_maxDate"
+                                        [(dateRange)]="_startDateTrendLog"
+                                        [isSingleDate]="'true'"
+                                        position="bottom-right"></date-range-picker>
+                    <month-date-pciker [disabled] = "!isDone.trendLogData" *ngIf="(_reload && _isMonth) || (_reload && _isYear)" [isYear]="_isYear" [(dateRange)]="_startDateTrendLog" (dateRangeChange)="onChangeTrendLogByDate(true)" [maxDate] ="today"></month-date-pciker>
+                    
+                  </div>
+                  <span>Last</span>
+                  <button [disabled] = "!isDone.trendLogData" *ngFor="let item of _mapArrayTrendIndex" class="btn btn-primary btn-circle" [ngClass]="{'active': trendLogTabIndex == item.value}" (click)="setTrendLogData(item.value)">{{item.label}}</button>
+                  <app-print-preview [className]="'position-gorelative'"  [targetHtml] = "'consumptionSummary'" [title]="'Consumption Summary'"></app-print-preview>
+
+                  <!-- <button class="btn btn-primary btn-circle" [ngClass]="{'active': trendLogTabIndex == 0}" (click)="setTrendLogData(0)">7D</button>
+                  <button class="btn btn-primary btn-circle" [ngClass]="{'active': trendLogTabIndex == 1}" (click)="setTrendLogData(1)">30D</button>
+                  <button class="btn btn-primary btn-circle" [ngClass]="{'active': trendLogTabIndex == 2}" (click)="setTrendLogData(2)">12M</button>
+                  <button class="btn btn-primary btn-circle" [ngClass]="{'active': trendLogTabIndex == 3}" (click)="setTrendLogData(3)">5Y</button> -->
+                </div>
+              </div>
+              <div class="chart-card-body p-3 position-relative">
+                <app-chart-loader [isDone] = "isDone.trendLogData">
+                  <app-trend *ngIf="trendLogData" [dataSource]="trendLogData"></app-trend>
+                </app-chart-loader>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="row" *ngIf="tabIndex == 1">
+        <div class="col-md-12 col-lg-12 col-xl-12 pl-0 pr-0 pb-4">
+          <app-form-container fieldName="Filter">
+            <app-equipment-breakdown-filter  serviceType="serviceType.WATER" (onFilter)="onBreakdownFiltered($event)" [dataSource]="equipmentBreakdownData" [eqBreakDownFilter]="equipmentBreakdownDateRange" (onDateRangeChanged)="onEqBreakdownFilter($event)"></app-equipment-breakdown-filter>
+          </app-form-container>
+          </div>
+          <div class="col-md-12 col-lg-12 col-xl-12 pl-0 pr-0">
+          <app-data-table [isLoading]="tableLoading" [rows]="rows" [columns]="columns"></app-data-table>
+        </div>
+      </div>
+
+      <div class="chart-card m-1" *ngIf="tabIndex == 3">
+        <div class="chart-card-body p-3 position-relative">
+          <div class="eq-breackdown-position">
+            <date-range-picker [disabled] = "!isDone.equipDistributionLg" *ngIf="_reload" [maxDate]="today" class="d-block" position="bottom-left"
+                [(dateRange)]="eqdistlg" (dateRangeChange)="getEqDistributionLg()">
+            </date-range-picker>
+          </div>
+          <div>
+            <app-print-preview [targetHtml] = "'waterDistribution'" [title]="'Equipment Distribution'"></app-print-preview>
+            <app-chart-loader [isDone] = "isDone.equipDistributionLg">
+              <app-doughnut2d *ngIf="equipDistributionLg" [fixedWidth]="true" [dataSource]="equipDistributionLg">
+              </app-doughnut2d>
+            </app-chart-loader>
+          </div>
+        </div>
+      </div>
+
+      <div class="row pl-2 pr-2 h-100" *ngIf="tabIndex == 2">
+        <app-dynamic-date-label [dateRange]="meterTreeDateRange"></app-dynamic-date-label>
+        <!-- <app-meter-tree [isLoading]="meterTreeLoading" type="m³" mode="false" [dataSource]="meterTreeDatas" class="w-100 h-100 p-3"></app-meter-tree> -->
+        <app-chart-loader [isDone] = "!meterTreeLoading">
+          <app-meter-tree *ngIf="!meterTreeLoading"  type="m³" mode="false" [dataSource]="meterTreeDatas" class="w-100 h-100 p-3"></app-meter-tree>
+        </app-chart-loader>
+        <app-floating-button *ngIf="meterTreeDatas" (clickOn)="exportMeter()" [icon]="FileDownloadIcon"></app-floating-button>
+      </div>
+      <div class="row pl-0 pr-0 h-100" *ngIf="tabIndex == 4">
+        <div class="col-md-12 col-lg-12 col-xl-12 pl-0 pr-0 h-100 position-relative">
+          <app-print-preview [className]="'days8'"  [targetHtml] = "'waterDistribution'" [title]="'Water 8 Days Profile'"></app-print-preview>
+
+          <app-profile-chart level="building" [buildingId]="buildingId" [serviceType]="serviceType.WATER"></app-profile-chart>
+        </div>
+      </div>
+
+      <section *ngIf="tabIndex == 6">
+        <ums-eui [id]="buildingId" [type]=0></ums-eui>
+      </section>
+    </div>
+  </div>

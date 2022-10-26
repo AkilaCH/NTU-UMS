@@ -1,0 +1,8 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb background">
+    <li class="breadcrumb-item" *ngFor="let item of dataSource; index as i;" [ngClass]="{'active': i === (dataSource.length-1)}">
+      <a *ngIf="i !== (dataSource.length-1)" [routerLink]="[item.url]" >{{ item.name | titlecase}}</a>
+      <span *ngIf="i === (dataSource.length-1)">{{ item.name | titlecase}}</span>
+    </li>
+  </ol>
+</nav>

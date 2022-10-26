@@ -1,0 +1,329 @@
+{
+    "chart": {
+      "caption": "",
+      "placeholder": "",
+      "subCaption": "",
+      "xAxisName": "Days of July, 2021",
+      "yAxisName": "Consumption (kWh)",
+      "baseFont": "Poppins",
+      "loadMessage": "",
+      "canvasBaseColor": "#ffffff",
+      "canvasBaseDepth": 4,
+      "showCanvasBg": false,
+      "baseFontColor": "#ffffff",
+      "baseFontSize": 14,
+      "theme": "carbon",
+      "xAxisNameFontColor": "#ffffff",
+      "xAxisNameFontSize": 14,
+      "xAxisNameFontBold": false,
+      "yAxisNameFontColor": "#ffffff",
+      "yAxisNameFontSize": 14,
+      "yAxisNameFontBold": false,
+      "palettecolors": "#007bff,#29c3be",
+      "use3DLighting": 0,
+      "bgColor": "#293946",
+      "bgAlpha": 100,
+      "exportenabled": 1,
+      "exportformats": "JPG=Export as Image|PDF=Export as PDF",
+      "exportFileName": "Change In Energy Consumption",
+      "toolbarButtonColor": "#455f73",
+      "toolbarButtonScale": 1.5
+    },
+    "categories": [
+        {
+            "category": [
+                {
+                    "label": "1"
+                },
+                {
+                    "label": "2"
+                },
+                {
+                    "label": "3"
+                },
+                {
+                    "label": "4"
+                },
+                {
+                    "label": "5"
+                },
+                {
+                    "label": "6"
+                },
+                {
+                    "label": "7"
+                },
+                {
+                    "label": "8"
+                },
+                {
+                    "label": "9"
+                },
+                {
+                    "label": "10"
+                },
+                {
+                    "label": "11"
+                },
+                {
+                    "label": "12"
+                },
+                {
+                    "label": "13"
+                },
+                {
+                    "label": "14"
+                },
+                {
+                    "label": "15"
+                },
+                {
+                    "label": "16"
+                },
+                {
+                    "label": "17"
+                },
+                {
+                    "label": "18"
+                },
+                {
+                    "label": "19"
+                },
+                {
+                    "label": "20"
+                },
+                {
+                    "label": "21"
+                },
+                {
+                    "label": "22"
+                },
+                {
+                    "label": "23"
+                },
+                {
+                    "label": "24"
+                },
+                {
+                    "label": "25"
+                },
+                {
+                    "label": "26"
+                },
+                {
+                    "label": "27"
+                },
+                {
+                    "label": "28"
+                },
+                {
+                    "label": "29"
+                },
+                {
+                    "label": "30"
+                },
+                {
+                    "label": "31"
+                }
+            ]
+        }
+    ],
+    "dataset": [
+        {
+            "seriesname": "DB/SAMPLE 02",
+            "data": [
+                {
+                    "value": "100"
+                },
+                {
+                    "value": "115"
+                },
+                {
+                    "value": "125"
+                },
+                {
+                    "value": "150"
+                },
+                {
+                    "value": "100"
+                },
+                {
+                    "value": "115"
+                },
+                {
+                    "value": "125"
+                },
+                {
+                    "value": "150"
+                },
+                {
+                  "value": "100"
+                },
+                {
+                    "value": "115"
+                },
+                {
+                    "value": "125"
+                },
+                {
+                    "value": "150"
+                },
+                {
+                    "value": "100"
+                },
+                {
+                    "value": "115"
+                },
+                {
+                    "value": "125"
+                },
+                {
+                    "value": "150"
+                },
+                {
+                  "value": "100"
+                },
+                {
+                    "value": "115"
+                },
+                {
+                    "value": "125"
+                },
+                {
+                    "value": "150"
+                },
+                {
+                    "value": "100"
+                },
+                {
+                    "value": "115"
+                },
+                {
+                    "value": "125"
+                },
+                {
+                    "value": "150"
+                },
+                {
+                    "value": "125"
+                },
+                {
+                    "value": "150"
+                },
+                {
+                    "value": "100"
+                },
+                {
+                    "value": "115"
+                },
+                {
+                    "value": "125"
+                },
+                {
+                    "value": "150"
+                },
+                {
+                    "value": "150"
+                }
+            ]
+        },
+        {
+            "seriesname": "DB/SAMPLE 03",
+            "data": [
+                {
+                    "value": "220"
+                },
+                {
+                    "value": "215"
+                },
+                {
+                    "value": "105"
+                },
+                {
+                    "value": "190"
+                },
+                {
+                  "value": "220"
+                },
+                {
+                    "value": "215"
+                },
+                {
+                    "value": "105"
+                },
+                {
+                    "value": "190"
+                },
+                {
+                  "value": "220"
+                },
+                {
+                    "value": "215"
+                },
+                {
+                    "value": "105"
+                },
+                {
+                    "value": "190"
+                },
+                {
+                  "value": "220"
+                },
+                {
+                    "value": "215"
+                },
+                {
+                    "value": "105"
+                },
+                {
+                    "value": "190"
+                },
+                {
+                    "value": "190"
+                },
+                {
+                  "value": "220"
+                },
+                {
+                    "value": "215"
+                },
+                {
+                    "value": "105"
+                },
+                {
+                    "value": "190"
+                },
+                {
+                  "value": "220"
+                },
+                {
+                    "value": "215"
+                },
+                {
+                    "value": "105"
+                },
+                {
+                    "value": "190"
+                },
+                {
+                  "value": "220"
+                },
+                {
+                    "value": "215"
+                },
+                {
+                    "value": "105"
+                },
+                {
+                    "value": "190"
+                },
+                {
+                    "value": "190"
+                },
+                {
+                    "value": "105"
+                }
+            ]
+        }
+    ]
+  }

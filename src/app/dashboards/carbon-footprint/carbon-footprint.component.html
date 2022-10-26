@@ -1,0 +1,122 @@
+<div class="card main-card-height" id="carbonFootprint">
+    <div class="card-header p-0">
+        <span class="d-none d-xl-block  pl-3 pt-3 pb-3 font-secondary">
+            <span class="d-inline-block font-secondary mr-4">
+                Date Range<br>
+                <date-range-picker [disabled] = "!isDone.carbonFootprintChartData" [maxDate]="today" [maxDateRange]="'1month'"  position="bottom-left" [(dateRange)]="dateRange" (dateRangeChange)="dateRangedChanged()">
+                </date-range-picker>
+            </span>
+            <span class="d-inline-block font-secondary mr-4">
+                Plant
+                <app-combo-box [disable] = "!isDone.carbonFootprintChartData" class="select-box-dark"  [dataSource]="plantList" [selected]="selectedPlant" [enableAll]="false"
+                (selectedChange)="plantChanged($event)"></app-combo-box>
+            </span>
+            <span class="d-inline-block font-secondary mr-4">
+                Grid Emission Factor
+                <br>
+                <div class="wrapper_cutom">
+                    <input [disabled] = "!isDone.carbonFootprintChartData" type="text" [(ngModel)]="gridEmision"  min="0" (keyup.enter)="onOpen('open')"/>
+                    <span>kg CO2/kWh</span>
+                </div>
+            </span>
+            <span class="tab-primary float-right font-primary" (click)="setTabIndex(1)"
+                [ngClass]="{'active': tabIndex == 1}">Table</span>
+            <span class="tab-primary float-right font-primary" (click)="setTabIndex(0)"
+                [ngClass]="{'active': tabIndex == 0}">Chart</span>
+        </span>
+        <div class="d-xl-none pl-3 pt-3 pb-3 font-secondary">
+            <div class="row w-100">
+                <div class="col-8">
+                    <div class="mb-2">
+                        Date Range
+                        <date-range-picker [disabled] = "!isDone.carbonFootprintChartData" [maxDate]="today" [maxDateRange]="'1month'"  position="bottom-left" [(dateRange)]="dateRange" (dateRangeChange)="dateRangedChanged()">
+                        </date-range-picker>
+                    </div>
+                </div>
+                <div class="col-4 ">
+                    <br>
+                    <select [disabled] = "!isDone.carbonFootprintChartData" class="form-control form-control-sm styled-select-box"
+                        (change)="setTabIndex($event.target.value)" [(ngModel)]="tabIndex">
+                        <option value="0">Chart</option>
+                        <option value="1">Table</option>
+                    </select>
+                </div>
+                <span class="d-inline-block font-secondary mr-4 pl-3">
+                    Plant
+                    <app-combo-box [disable] = "!isDone.carbonFootprintChartData" class="select-box-dark"  [dataSource]="plantList" [selected]="selectedPlant" [enableAll]="false"
+                    (selectedChange)="plantChanged($event)"></app-combo-box>
+                </span>
+                <span class="d-inline-block font-secondary mr-4 pl-3">
+                    Grid Emission Factor
+                    <br>
+                    <div class="wrapper_cutom">
+                        <input [disabled] = "!isDone.carbonFootprintChartData" type="text" [(ngModel)]="gridEmision"  min="0" (keyup.enter)="onOpen('open')"/>
+                        <span>kg CO2/kWh</span>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+    <section *ngIf="tabIndex == 0" style="position: relative;">
+        <div class="card-body main-card-height card-scroll">
+            <!-- <div *ngIf="chartLoading" class="loading-area">
+                <img  alt="loader" class="loading-icon" src="assets/img/loader.svg" />
+            </div> -->
+            <div class="p-3 ml-1">
+                <app-print-preview *ngIf="!chartLoading && carbonFootprintChartData"  [className]="'customp-chiller-efficiencyx'" [targetHtml] = "'carbonFootprint'" [title]="'Carbon Footprint'"></app-print-preview>
+                <app-chart-loader [isDone] = "isDone.carbonFootprintChartData">
+                    <app-zoomlinedy [fixedWidth]="true" [dataSource]="carbonFootprintChartData"></app-zoomlinedy>
+                </app-chart-loader>
+            </div>
+        </div>
+    </section>
+    <section *ngIf="tabIndex == 1">
+        <div class="card-body main-card-height card-scroll">
+            <div *ngIf="chartLoading" class="loading-area">
+                <img  alt="loader" class="loading-icon" src="assets/img/loader.svg" />
+            </div>
+            <ngx-datatable *ngIf="!chartLoading" class="dark" [rows]="rows" [sortType]="sortType.multi" [columnMode]="columnMode.standard"
+                [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="18">
+                <ngx-datatable-column name="Date" [width]="(tableWidth | async)">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.dateTime | date: 'y/MM/dd'}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Daily &nbsp;Energy &nbsp;(Wh)" [width]="(tableWidth | async)">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.daily_energy == null ? 'N/A' : row.daily_energy | number:'1.0-2'}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="CO₂ &nbsp;Daily &nbsp;Emission &nbsp;(kg)" [width]="(tableWidth | async)">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.co2_daily_emission == null ? 'N/A' : row.co2_daily_emission | number:'1.0-2'}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="CO₂ &nbsp;Monthly &nbsp;Emission &nbsp;(kg)" [width]="(tableWidth | async)">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.co2_monthly_emission == null ? 'N/A' : row.co2_monthly_emission | number:'1.0-2'}}
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+            <div *ngIf="!chartLoading && rows.length !=0" class="export-button mt-3">
+                <button class="btn dark-button" type="button" (click)="exportToExcel()">Export to Excel</button>
+            </div>
+        </div>
+    </section>
+    <section class="popup-confirm" >
+        <div class="popup-confirm-inside">
+            <div class="popup-hightlige"></div>
+            <div class="popup-content">
+                <div class="popup-content-inside">
+                    <div class="popup-content-text" >
+                        <h3>Are you sure to make change Grid Emission Factor?</h3>
+                    </div>
+                    <div class="popup-content-action">
+                        <button class="btn btn-no" (click) = "onOpen('cancel')">CANCEL</button>
+                        <button class="btn btn-yes" (click) = "onOpen('close')">YES</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

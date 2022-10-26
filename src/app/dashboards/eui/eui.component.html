@@ -1,0 +1,55 @@
+<div class="row pl-2 pr-2">
+<div class="col-md-12 col-lg-6 col-sm-12 col-xl-6 pr-1">
+    <h6>Gross Floor Area (GFA) Configurations</h6>
+    <div class="chart-card mt-1">
+        <div class="chart-card-body">
+            <table class="table table-dark table-striped mb-0">
+                <thead>
+                    <tr>
+                        <td width="25%">Category</td>
+                        <td width="25%">Current GFA (m<sup>2</sup>)</td>
+                        <td width="25%">New GFA (m<sup>2</sup>)</td>
+                        <td width="25%">Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dry</td>
+                        <td>{{ dryGfaCurrent }}</td>
+                        <td><input type="number" [(ngModel)]="dryGfa" class="form-control" min="0" name="gfa_dry"></td>
+                        <td><button (click)="updateGfa('gfa_dry')"
+                            class="btn btn-success clickable">Update</button></td>
+                    </tr>
+                    <!-- <tr>
+                        <td>Wet</td>
+                        <td>{{ wetGfaCurrent }}</td>
+                        <td><input type="number" [(ngModel)]="wetGfa" class="form-control" min="0" name="gfa_wet"></td>
+                        <td><button (click)="updateGfa('gfa_wet')"
+                            class="btn btn-success clickable">Update</button></td>
+                    </tr>
+                    <tr>
+                        <td>Other</td>
+                        <td>{{ otherGfaCurrent }}</td>
+                        <td><input type="number" [(ngModel)]="otherGfa" class="form-control" min="0" name="gfa_other"></td>
+                        <td><button (click)="updateGfa('gfa_other')"
+                            class="btn btn-success clickable">Update</button></td>
+                    </tr> -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Total</td>
+                        <td>{{ totalGfaCurrent }}</td>
+                        <td>{{ (dryGfa + wetGfa + otherGfa) }}</td>
+                        <td>Difference: {{ getAbs(totalGfaCurrent - (dryGfa + wetGfa + otherGfa)) }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            Please note that total Gross Floor Area (GFA) for this building/hall is calculated using above values.
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+</div>

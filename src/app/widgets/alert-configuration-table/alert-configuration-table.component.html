@@ -1,0 +1,78 @@
+<div *ngIf="!isLoading" class="mb-3 mt-3 row-limit">
+    No of Rows &nbsp;
+    <app-combo-box class="select-box-dark" [dataSource]="rowLimits" [fullWidth]="false" [selected]="2"
+        [enableAll]="false" (selectedChange)="changeNoOfRows($event)"></app-combo-box>
+</div>
+
+<div *ngIf="!isLoading">
+    <ngx-datatable
+        class="dark mt-2"
+        [columnMode]="ColumnMode.standard"
+        [headerHeight]="40"
+        [footerHeight]="50"
+        rowHeight="auto"
+        [limit]="limit"
+        [rows]="dataSource">
+        <ngx-datatable-column [sortable]="false" prop="activate" name="Activate" [width]="(tableWidth | async)">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <span>
+                    <app-toggle-button [switch]="row.toggle" (switchChange)="onToggle($event, row.meterID, row)">
+                    </app-toggle-button>
+                </span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="true" prop="equipment" name="Equipment" [width]="(tableWidth | async)">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.equipment}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="true" prop="mondayBenchMark" name="Mon-Benchmark" [width]="(tableWidth | async)">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.mondayBenchMark}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="true" prop="tuesdayBenchMark" name="Tue-Benchmark" [width]="(tableWidth | async)">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.tuesdayBenchMark}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="true" prop="wednesdayBenchMark" name="Wed-Benchmark" [width]="(tableWidth | async)">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.wednesdayBenchMark}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="true" prop="thursdayBenchMark" name="Thu-Benchmark" [width]="(tableWidth | async)">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.thursdayBenchMark}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="true" prop="fridayBenchMark" name="Fri-Benchmark" [width]="(tableWidth | async)">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.fridayBenchMark}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="true" prop="saturdayBenchMark" name="Sat-Benchmark" [width]="(tableWidth | async)">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.saturdayBenchMark}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="true" prop="sundayBenchMark" name="Sun-Benchmark" [width]="(tableWidth | async)">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.sundayBenchMark}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="false" prop="changeMode" name="Mode" [width]="(tableWidth | async)">
+            <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                <div class="btn-group">
+                    <button [disabled]="!row.toggle" *ngFor="let item of row.changeMode" class="btn btn-primary"
+                        [ngClass]="{'active': item.selected}"
+                        (click)="selectButtonClick(row, item.key)">{{item.text}}</button>
+                </div>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</div>
+
+<div *ngIf="isLoading" class="loading-area">
+    <img  alt="loader" class="loading-icon" src="assets/img/loader.svg" />
+</div>

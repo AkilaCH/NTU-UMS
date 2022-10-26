@@ -1,0 +1,47 @@
+<div class="input-group date-picker-month">
+  <input ngbDatepicker type="text" [class.w-100]="fullWidth==='true'" class="form-control-sm date-picker-input" readonly [value]="_value"
+     (click)="openPopup()" [disabled] = "disabled" (dateSelect)="onDateChange($event)">
+  <div class="date-picker-month-windows" *ngIf="_showPop">
+    <div class="date-picker-month-windows-inside">
+
+      <div class="year-picker d-flex align-items-center justify-content-center" *ngIf = "!_isYearOpened">
+        <div class="year-picker-inside" (click) = "openPopupYear()">
+          <span>{{_selectedYear}}</span>
+        </div>
+      </div>
+
+      <div class="year-picker d-flex align-items-center justify-content-center" *ngIf = "_isYearOpened">
+        <div class="year-picker-inside d-flex align-items-center justify-content-between w-100">
+          <div class="arrow-icon" (click)="onArrowClick('back')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 278.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/></svg>
+          </div>
+          <span>{{_selectedYear}}</span>
+          <div class="arrow-icon" (click)="onArrowClick('next')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M342.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L274.7 256 105.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="wraper-dates" *ngIf = "!_isYearOpened">
+        <div class="date-list d-flex align-items-center flex-wrap" >
+          <div class="date-item" *ngFor="let item of _monthList" (click) = "onPickMonth(item.value)" >
+            <span [className] = "_selectedMonth == item.value && 'selected'">{{item.label}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="wraper-dates" *ngIf = "_isYearOpened">
+        <div class="wraper-dates-inside d-flex" [style.width]="_boxWidth + '%'" [style.marginLeft]="_leftPos + '%'">
+          <div class="year-box d-flex align-items-center" *ngFor="let yeargroup of _yearList; i as indexOfelement;" [style.width]="(_yearList.length * 100)+'%'">
+            <div class="date-list d-flex align-items-center flex-wrap" >
+              <div class="date-item" *ngFor="let item of yeargroup" (click)= "onPickYear(item.value)" >
+                <span [className] = "_selectedYear == item.value && 'selected'">{{item.label}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

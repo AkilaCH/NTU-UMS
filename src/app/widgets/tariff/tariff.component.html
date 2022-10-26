@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-12 pl-0 pr-0">
+        <table class="w-100">
+            <tbody>
+                <tr>
+                    <td class="info">Tariff: </td>
+                    <td class="info">S$ {{ currentTariff | number : '1.2-2' }}</td>
+                </tr>
+                <tr>
+                    <td class="info">Effective  Since: </td>
+                    <td class="info">{{ currentEffectiveFrom | date: 'MMM, yyyy' }}</td>
+                </tr>
+                <tr>
+                    <td class="pt-3 pb-2">
+                        Check to update tariff
+                    </td>
+                    <td>
+                        <input [(ngModel)]="isEdit" type="checkbox" class="mt-2 float-right">
+                    </td>
+                </tr>
+                <tr *ngIf="isEdit" class="animate__bounceIn">
+                    <td colspan="2">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">S$</span>
+                            </div>
+                            <input type="number" [(ngModel)]="tariff" class="form-control" min="0" name="tariff" step='0.01'>
+                            <div class="input-group-append">
+                                <button class="btn btn-success clickable" (click)="updateTariff()">Update</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr *ngIf="isEdit" class="animate__bounceIn">
+                    <td class="pt-2">Apply since: </td>
+                    <td class="pt-2">{{ effectiveFrom | date: 'MMM, yyyy' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

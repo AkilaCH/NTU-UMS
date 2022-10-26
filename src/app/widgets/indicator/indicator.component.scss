@@ -1,0 +1,36 @@
+@import 'src/scss/_variables.scss';
+
+.danger{
+    color: $font-danger;
+}
+
+.neutral{
+    color: $font-neutral;
+}
+
+.indi-container{
+    min-width: 115px;
+    .value{
+        font-size: 1.3em;
+    }
+
+    .sub-value{
+        font-size: $size-font-pointer;
+        margin-bottom: 0px;
+        font-weight: 500;
+        font-size: 1.3rem;
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .indi-img{
+        width: 20px;
+        margin-right: 5px;
+    }
+    .custom-fonts{
+        font-size: 12px;
+    }
+}
+.value-image{
+    min-width: 115px;
+}

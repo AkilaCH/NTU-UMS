@@ -1,0 +1,7 @@
+<div class="row flex-nowrap align-items-center justify-content-center">
+  <label class="label-text"><ng-content></ng-content></label>
+  <label class="switch">
+   <input [disabled] = "disabled" [(ngModel)]="toggle" (change)="toggleChanged()" type="checkbox">
+  <span class="slider round"></span>
+  </label>
+</div>

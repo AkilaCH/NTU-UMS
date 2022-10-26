@@ -1,0 +1,4 @@
+<select [attr.disabled]="disable ? '' : null" [ngClass]="{'select-box-dark': dark == 'true', 'w-100': fullWidth == 'true'}" [(ngModel)]="selected" class="comb-select select-box-dark"(change)="onChangedSelect($event)">
+  <option *ngIf="enableAll" value="0" selected="selected">All</option>
+  <option *ngFor="let item of dataSource" value="{{item.id}}">{{item.name}}</option>
+</select>

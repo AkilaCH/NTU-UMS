@@ -1,0 +1,32 @@
+<ng-container *ngIf="!tableData.data">
+  <div class="text-center middle-text text-muted"><img  alt="loader" class="loader-icon" src="assets/img/loader.svg" /></div>
+</ng-container>
+
+<ng-container *ngIf="tableData.data">
+  <div class="table-content">
+    <table *ngIf="tableData.data.length != 0" class="table table-striped table-dark table-width">
+      <thead>
+          <tr>
+            <th valign="middle" [innerHTML]="colHead" *ngFor="let colHead of tableData.columns"></th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td  [attr.colspan]="tableData.columns.length">
+            <div class="scroll-tbody" [style.height.px]="isSite ? 700 : 560">
+              <table class=" table-dark w-100">
+                <tr *ngFor="let row of tableData.data;  let i = index">
+                  <td *ngFor="let data of row">{{ getValue(data) }}</td>
+                </tr>
+              </table>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="tableData.data">
+  <div *ngIf="tableData.data.length == 0" class="text-center middle-text text-muted"><small>No data to display</small> </div>
+</ng-container>

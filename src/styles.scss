@@ -1,0 +1,551 @@
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/dark.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+@import '../node_modules/angular-notifier/styles.scss';
+@import '~animate.css/animate.min';
+
+/* You can add global styles to this file, and also import other style files */
+@import 'src/scss/_variables.scss';
+
+@font-face {
+  font-family: "PoppinsSemiBold";
+  src: url("assets/fonts/Poppins-Regular.ttf");
+}
+
+html, body{
+  height: 100%;
+}
+
+:focus {
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+body{
+  font-size: 14px !important;
+  font-family: Poppins !important;
+  background-color: $bg-color !important;
+  color: $font-color !important;
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+sup.badge {
+  top: -10px;
+}
+
+.datatable-header {
+  background-color: $bg-table-header !important;
+  color: $font-color !important;
+}
+
+.datatable-body {
+  background-color: $bg-table-body !important;
+  color: $font-color !important;
+}
+
+.datatable-footer {
+  background-color: $bg-table-body !important;
+  color: $color-font-ternary !important;
+}
+
+.empty-row {
+  height: calc(100vh - 612px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
+  padding-top: 7px;
+}
+
+.datatable-header-cell-label {
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.export-button {
+  margin: 20px 0px 20px 0px;
+}
+
+.dark-button {
+  background-color: #2F4251 !important;
+  border-color: #2F4251 !important;
+  color: #ffffff !important;
+  font-size: 13px !important;
+}
+
+.btn{
+  font-size: 14px !important;
+}
+
+.btn:focus{
+  box-shadow: 0 0 0 0rem rgba(0, 0, 0, 0) !important;
+}
+
+.btn-primary{
+  background-color: rgba(0,0,0,0) !important;
+}
+
+.btn-primary.active{
+  background-color: $bg-primary !important;
+  border-color: $bg-primary !important;
+}
+
+.fill-content{
+  height: calc(100% - #{$header-height});
+}
+
+.card{
+  background-color: $bg-card !important;
+}
+
+a{
+  text-decoration: none !important;
+}
+
+.tab-primary{
+  text-decoration: none;
+  color: $color-font-secondary;
+  padding: 1rem 1rem 1rem 1rem;
+  border-bottom: 2px solid rgba(0,0,0,0);
+  transition: all ease-in-out 0.3s;
+  cursor: pointer;
+}
+
+.tab-primary:hover, .tab-primary.active{
+  color: $bg-primary;
+  border-bottom: 2px solid $bg-primary;
+}
+
+.font-primary{
+  font-size: $size-font-primary;
+}
+
+.font-secondary{
+  font-size: $size-font-secondary;
+}
+
+.chart-card{
+  background-color: $bg-secondary;
+  border-radius: 3px;
+  overflow: hidden;
+
+  .chart-card-header{
+    background-color: $bg-opt-one;
+    font-size: $size-font-primary;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    min-height: 53px;
+
+    .date-picker{
+      cursor: pointer;
+      color: $color-font-ternary;
+      transition: all ease-in-out 0.3s;
+    }
+
+    .date-picker:hover{
+      color: $font-color;
+    }
+
+    .btn-group{
+      margin-top: -0.4rem;
+
+      .btn{
+        font-size: $size-font-header-btn !important;
+      }
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .chart-card-body{
+      height: calc(100% - #{$height-chart-header});
+      overflow: hidden;
+      padding-bottom: 30px !important;
+    }
+  }
+  @media only screen and (min-width: 768px) {
+    .chart-card-body{
+      height: calc(100% - #{$height-chart-header});
+      overflow: hidden;
+    }
+  }
+}
+
+.card-bg-color{
+  background-color: $bg-secondary;
+}
+
+.fusioncharts-container{
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+
+  svg{
+    background-color: rgba(0,0,0,0) !important;
+  }
+}
+
+.cal-height{
+  height: calc(100% - 4rem);
+}
+
+.lg-topic{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: $size-font-large;
+  font-weight: 400;
+
+  small{
+    font-size: $size-font-secondary;
+  }
+}
+
+.clickable{
+  cursor: pointer;
+}
+
+.row{
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.fluid-margin{
+  margin-left: -15px !important;
+  margin-right: -15px !important;
+}
+
+.auto-margin{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+fusioncharts > div:first-child {
+  display: flex;
+}
+
+.mt-0-6{
+  margin-top: 0.6rem;
+}
+
+.res-avg{
+  width: 100%;
+  height: auto;
+}
+
+.no-list-style{
+  list-style-type: none;
+}
+
+select {
+  background-color: $bg-card;
+  padding: 0.3rem 1rem 0.3rem 1rem ;
+  color: $font-color;
+  border-radius: 3px;
+  border: 1px solid #ffffff;
+}
+
+.btn-sm {
+  font-size: 0.875rem !important;
+}
+
+.search-box {
+  height: 28px !important;
+  font-size: 13px !important;
+}
+
+.white-select-box {
+  background-color: #ffffff;
+  color: #1b1b1b;
+  padding: 4px;
+  height: 28px;
+  font-size: 12px;
+}
+
+table {
+  tbody{
+    tr {
+      td {
+        vertical-align: middle !important;
+      }
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar:hover {
+  width: 30px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #8d8d8d;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(29, 39, 46, 0.8);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(29, 39, 46);
+}
+
+@media only screen and (max-width: 768px) {
+  .card-scroll {
+    min-height: 77vh;
+    max-height: 77vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .card-scroll {
+    min-height: 85vh;
+    max-height: 85vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+
+.loader-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.modal-content {
+  margin: 20px 0 0 0;
+}
+
+html,body, .app-panel {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.main-card-height {
+  height: calc(100vh - 70px);
+}
+
+
+.select-box-dark{
+  background-color: #2f4251 !important;
+  border: none !important;
+  color: #FFFFFF !important;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.pie-chart-min-height {
+  min-height: 350px;
+}
+
+.pie-chart-min-height-lg{
+  min-height: 650px;
+}
+
+.eq-breackdown-position {
+  position: absolute;
+  z-index: 1;
+  padding: 8px;
+}
+
+.toggle-middle-head {
+  margin-top: -2px;
+}
+
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+.middle-text{
+  text-align: center;
+  vertical-align: middle;
+  line-height: 70vh;
+}
+
+.btn-link {
+  color: #777777 !important;
+}
+
+.ngb-dp-weekday {
+  color: #000000 !important;
+  font-style: normal !important;
+}
+
+.badge {
+  font-weight: lighter !important;
+  font-size: 9px !important;
+}
+
+.btn-primary-fill {
+  background-color: #007bff !important;
+  color: #ffffff !important;
+}
+
+.btn-primary-fill:hover {
+  background-color: #0071e9 !important;
+}
+
+.btn-green:hover {
+  background-color: #3D8939 !important;
+}
+
+.btn-red:hover {
+  background-color: #C82E33 !important;
+}
+
+.notifier__notification {
+  box-shadow: 0 1px 4px rgba(0,0,0,0.14), 0 3px 8px rgba(0, 0, 0, 0.14), 0 4px 13px rgba(0, 0, 0, 0.18);
+}
+
+.notifier__notification--default {
+  background-color: #293946;
+  padding: 10px;
+}
+
+.notifier__notification--material .notifier__notification-message {
+  max-width: 350px;
+}
+
+.btn-primary:disabled {
+  border: 1px solid #7c7c7c !important;
+  background-color: #cccccc00 !important;
+  color: #666666 !important;
+}
+
+.page-count>span{
+  display: none !important;
+}
+
+.btn-circle {
+  height: 40px;
+  width: 40px;
+  margin-left: 15px;
+  padding: 0 !important;
+  border-radius: 20px !important;
+  box-shadow: 0 1px 5px 2px #2c2c2c;
+  background-color: #293946 !important;
+  border: none !important;
+}
+
+.btn-circle:focus {
+  box-shadow: 0 2px 5px 2px #2c2c2c !important;
+}
+
+.btn-circle:hover {
+  box-shadow: 0 2px 5px 2px #2c2c2c !important;
+  background-color: #007bff !important;
+}
+
+// meter tree
+.node {
+  cursor: pointer;
+}
+
+.overlay {
+  background-color: #242c33;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  font-size: 14px;
+  font-family: Poppins;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+.white-select-box{
+
+}
+
+
+.custom-view-pointer{
+  
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:last-child{
+    border-left: 10px solid #2f4251;
+  }
+  .pointer-container{
+    border: none !important
+  }
+  @media(max-width: 576px){
+    &:last-child{
+      border-left: none;
+      border-top: 10px solid #2f4251;
+    }
+  }
+}
+
+div.chart-card div.custom-card-body{
+  padding-bottom: 0 !important;
+}
+
+
+button.btn-menu-sidebar{
+  padding: 1px;
+  border-color: transparent !important;
+  font-size: 20px !important;
+  font-size: 22px !important;
+  height: 30px;
+  .ng-fa-icon{
+    display: flex !important;
+    svg.fa-bars.fa-w-14{
+      width: 1em !important;
+    }
+  }
+}
+
+input:disabled, select:disabled {
+  background-color: #8a8a8a !important;
+}
+button.btn-primary{
+  &:hover:enabled{
+    background-color: #0462c6 !important;
+    border-color: #0462c6 !important;
+  }
+}
+
+.app-navigator{
+  section{
+    .top-level.item{
+      padding-left: 10px !important;
+    }
+  }
+  .chart-card{
+    .chart-card-header{
+      padding-left: 12px !important;
+      .btn.float-right.btn-close{
+        padding-right: 10px !important;
+      }
+    }
+  }
+}
+
+.ml-min1{
+  margin-left: -15px !important;
+}

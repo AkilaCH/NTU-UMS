@@ -1,0 +1,24 @@
+.loading-area {
+  width: 100%;
+  height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-icon {
+  width: 75px;
+  height: auto;
+}
+
+#meter-tree {
+  position: absolute;
+}
+
+.preview {
+  position: absolute;
+  right: 0;
+  top: 0;
+  // max-height: calc(100vh - 242px);
+  box-shadow: 1px 1px 8px 2px #0000005e;
+}

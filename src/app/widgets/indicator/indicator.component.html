@@ -1,0 +1,11 @@
+<div class="indi-container d-flex justify-content-center flex-column align-items-center h-100 text-center">
+    <div class="value mb-3 value-image">
+        <img *ngIf="isIncreased && diffValue != 0" src="assets/img/indi-up.svg" alt="Increased" class="indi-img">
+        <img *ngIf="!isIncreased && diffValue != 0" src="assets/img/indi-down.svg" alt="Increased" class="indi-img">
+        <span [classList]="isIncreased ? 'danger' : 'neutral'">{{ percentile ? percentile : '' }}</span>
+    </div>
+    <span [ngClass]="{'sub-value': true, 'danger': isIncreased, 'neutral': !isIncreased}">
+        {{ changeInConsumption }}
+    </span>
+    <div *ngIf="diffValue != 0" class="w-100 text-center p-2 custom-fonts">{{ isIncreased ? 'Increase' : 'Decrease' }} in Consumption</div>
+</div>
